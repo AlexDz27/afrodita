@@ -14,6 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'name_home' => env('APP_NAME_HOME', 'Afrodita - beauty studio in Kobrin'),
 
     /*
     |--------------------------------------------------------------------------
