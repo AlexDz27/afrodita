@@ -15,4 +15,14 @@ class ServiceController extends Controller
             'services' => $services
         ]);
     }
+
+    public function show($id)
+    {
+        $service = Service::find($id);
+
+        return view('catalog.service', [
+            'breadCrumbTitle' => $service->name,
+            'service' => $service
+        ]);
+    }
 }
