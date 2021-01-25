@@ -1,7 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
-@section('title', $title)
+@section('title')
+    @parent Catalog
+@endsection
 
 @section('content')
-    <h1>Catalog page content</h1>
+    <h1>Services</h1>
+    @foreach ($services as $service)
+        <h2>{{ $service->name }}</h2>
+        <p>{{ $service->description }}</p>
+    @endforeach
 @endsection

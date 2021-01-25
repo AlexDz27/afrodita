@@ -1,6 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
-@section('title', config('app.name') . ' | About Us')
+@section('title')
+    @parent About Us
+@endsection
 
 @section('content')
     <h1>About Us page content</h1>
