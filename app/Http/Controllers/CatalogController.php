@@ -11,7 +11,7 @@ class CatalogController extends Controller
         $services = Service::all();
 
         return view('catalog', [
-            'title' => 'Catalog',
+            'breadCrumbTitle' => 'Catalog',
             'services' => $services
         ]);
     }
