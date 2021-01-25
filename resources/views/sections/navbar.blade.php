@@ -1,6 +1,9 @@
 @php
 // TODO: how to refactor?
-$route = \Illuminate\Support\Facades\Route::currentRouteName();
+use Illuminate\Support\Facades\Route;
+
+$route = Route::currentRouteName();
+$isCatalogRoute = ($route === 'catalog') || (Route::getCurrentRoute()->action['prefix'] === '/catalog');
 @endphp
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -13,7 +16,7 @@ $route = \Illuminate\Support\Facades\Route::currentRouteName();
                 <li class="nav-item {{ $route === 'aboutUs' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('aboutUs') }}">About Us</a>
                 </li>
-                <li class="nav-item {{ $route === 'catalog' ? 'active' : '' }}">
+                <li class="nav-item {{ $isCatalogRoute ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('catalog') }}">Catalog</a>
                 </li>
             </ul>

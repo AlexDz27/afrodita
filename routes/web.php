@@ -9,3 +9,8 @@ Route::view('/', 'home')->name('home');
 Route::view('/about-us', 'about-us', ['breadCrumbTitle' => 'About Us'])->name('aboutUs');
 
 Route::get('/catalog', [CatalogController::class, 'list'])->name('catalog');
+Route::prefix('catalog')->group(function () {
+    Route::get('/services', [ServiceController::class, 'list'])->name('services');
+
+    Route::get('/products', [ProductController::class, 'list'])->name('products');
+});
