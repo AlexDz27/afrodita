@@ -17,22 +17,11 @@ class ProductSeeder extends Seeder
     public function run()
     {
         DB::table('products')->insert([
-            'name' => Str::random(10),
-            'description' => Str::random(150),
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-
-        DB::table('products')->insert([
-            'name' => Str::random(10),
-            'description' => Str::random(150),
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-        ]);
-
-        DB::table('products')->insert([
-            'name' => Str::random(10),
-            'description' => Str::random(150),
+            'name' => 'Gel nail polish "Gelly Grattol Diamond"',
+            'description' => 'Gel polish GRATTOL Professional- German quality, a completely new generation, which will not leave anyone indifferent. The rich palette of Grattol gel varnishes has an incredible density. Grattol Professional is easy to apply, most colors fall amazingly in one layer, which allows you to look very natural and natural on your nails. GRATTOL Professional has achieved this effect due to its high pigment content. Grattol has a thicker and denser texture than other famous brands. Subject to the correct application technology, the durability of the coating will be at least 5-6 weeks. Volume 9 ml. Shelf life: 36 months Storage: Keep out of reach of children at a temperature of 2-24 ° C',
+            'photos' => json_encode([
+                ['file_path' => '/img/products/gel-nail-polish-gelly_grattol-diamond.jpg'],
+            ]),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
         ]);

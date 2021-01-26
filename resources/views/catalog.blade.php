@@ -15,6 +15,10 @@
                         @foreach ($services as $service)
                             <li class="list-group-item">
                                 <a href="{{ url("/catalog/services/{$service->id}") }}">{{ $service->name }}</a>
+
+                                @if ($service->photos)
+                                    <img src="{{ $service->photos[0]['file_path'] }}" alt="{{ $service->name }}" width="150">
+                                @endif
                             </li>
                         @endforeach
                     </ul>
@@ -29,6 +33,10 @@
                         @foreach ($products as $product)
                             <li class="list-group-item">
                                 <a href="{{ url("/catalog/products/{$product->id}") }}">{{ $product->name }}</a>
+
+                                @if ($product->photos)
+                                    <img src="{{ $product->photos[0]['file_path'] }}" alt="{{ $product->name }}" width="150">
+                                @endif
                             </li>
                         @endforeach
                     </ul>
