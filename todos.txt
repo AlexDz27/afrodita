@@ -1,0 +1,1 @@
+1. Squash migrations into single migration when most work is done
