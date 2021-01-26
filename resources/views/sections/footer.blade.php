@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 $route = Route::currentRouteName();
 @endphp
 
-@if ($route === 'home')
+@if ($route === 'home' || $route === 'dashboard')
     <!-- Load React. -->
     <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
     <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
