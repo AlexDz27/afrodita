@@ -1,1 +1,7 @@
+// High Importance
+1. Add auth for admin pages
+
+// Low importance
 1. Squash migrations into single migration when most work is done
+
+2. Refactor breadcrumb title in controllers
