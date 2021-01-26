@@ -35,7 +35,7 @@
                                 <a href="{{ url("/catalog/products/{$product->id}") }}">{{ $product->name }}</a>
 
                                 @if ($product->photos)
-                                    <img src="{{ $product->photos[0]['file_path'] }}" alt="{{ $product->name }}" width="150">
+                                    <img src="{{ $product->photos[0]['file_path'] }}" alt="{{ $product->name }}" width="120">
                                 @endif
                             </li>
                         @endforeach

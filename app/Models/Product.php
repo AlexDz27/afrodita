@@ -10,6 +10,7 @@ class Product extends Model
     use HasFactory;
 
     protected $casts = [
-        'photos' => 'array'
+        'photos' => 'array',
+        'attributes' => 'array'
     ];
 }
