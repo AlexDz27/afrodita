@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
 @section('title')
-  @parent Services > {{ $service->name }}
+    @parent Services > {{ $service->name }}
 @endsection
 
 @section('content')
-  <h1>{{ $service->name }}</h1>
+    <h1>{{ $service->name }}</h1>
 
-  <p>{{ $service->description }}</p>
+    <p>{{ $service->description }}</p>
 @endsection

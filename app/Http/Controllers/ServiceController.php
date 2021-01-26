@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ServiceController extends Controller
 {
@@ -18,7 +19,7 @@ class ServiceController extends Controller
 
     public function show($id)
     {
-        $service = Service::find($id);
+        $service = Service::find($id) ?? throw new NotFoundHttpException();
 
         return view('catalog.service', [
             'breadCrumbTitle' => $service->name,

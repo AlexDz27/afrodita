@@ -14,7 +14,7 @@
                     <ul class="list-group list-group-flush">
                         @foreach ($services as $service)
                             <li class="list-group-item">
-                                <a href="#">{{ $service->name }}</a>
+                                <a href="{{ url("/catalog/services/{$service->id}") }}">{{ $service->name }}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -23,6 +23,16 @@
 
             <div class="col text-center">
                 <h3><a class="display-1" href="{{ route('products') }}">Products</a></h3>
+
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        @foreach ($products as $product)
+                            <li class="list-group-item">
+                                <a href="{{ url("/catalog/products/{$product->id}") }}">{{ $product->name }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
