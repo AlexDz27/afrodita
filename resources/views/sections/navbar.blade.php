@@ -24,7 +24,7 @@ $isCatalogRoute = ($route === 'catalog') || (Route::getCurrentRoute()->action['p
             <form class="d-flex">
                 @if ($route === 'home')
                     <div id="show-number-container" data-phone="{{ config('admin.phone') }}">
-                        {{-- <ShowPhoneBtn phone={phone} /> in /public/js/index.js --}}
+                        {{-- <ShowPhoneButton phone={phone} /> in /public/js/index.js --}}
                         <button class="btn btn-warning" type="button" style="width: 170px; margin-right: 35px;">Show our phone</button>
                     </div>
                 @endif

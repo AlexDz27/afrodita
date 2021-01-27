@@ -8,6 +8,10 @@ $route = Route::currentRouteName();
     <p>2015 - {{ now()->year }} | {{ config('app.name_home') }}</p>
 </footer>
 
-@if ($route === 'home')
+<script>
+    window.route = '{{ $route }}';
+</script>
+
+@if ($route === 'home' || $route === 'editProduct')
     <script src="/js/index.js"></script>
 @endif

@@ -6,6 +6,7 @@ $route = Route::currentRouteName();
 $isCatalogRoute = Route::getCurrentRoute()->action['prefix'] === '/catalog';
 $isServicesRoute = Route::currentRouteName() === 'servicesShow';
 $isProductsRoute = Route::currentRouteName() === 'productsShow';
+$isAdminRoute = Route::getCurrentRoute()->action['prefix'] === '/admin';
 @endphp
 
 @if ($route !== 'home')
@@ -21,6 +22,9 @@ $isProductsRoute = Route::currentRouteName() === 'productsShow';
                 @endif
                 @if ($isProductsRoute)
                     <li class="breadcrumb-item"><a href="{{ route('products') }}">Products</a></li>
+                @endif
+                @if ($isAdminRoute && $route !== 'dashboard')
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 @endif
                 <li class="breadcrumb-item active">{{ $breadCrumbTitle }}</li>
             </ol>

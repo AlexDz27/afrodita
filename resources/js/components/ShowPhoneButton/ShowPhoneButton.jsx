@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-class ShowPhoneBtn extends React.Component {
+export class ShowPhoneButton extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isPhoneShown: false };
@@ -29,10 +28,3 @@ class ShowPhoneBtn extends React.Component {
         );
     }
 }
-
-// Render "Show our number" button in navbar. On click, shows telephone number of the studio.
-const container = document.getElementById('show-number-container');
-const phone = container.dataset.phone; // get phone data from "data-phone=":phone" in container
-ReactDOM.render(<ShowPhoneBtn phone={phone} />, container);
-
-console.log(123123);

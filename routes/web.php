@@ -23,5 +23,7 @@ Route::prefix('catalog')->group(function () {
 // Admin
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
-    // TODO: route action to edit product
+
+    Route::get('/products/edit/{id}', [AdminController::class, 'editProduct'])->name('editProduct');
+    Route::post('/products/edit/{id}', [AdminController::class, 'editProduct']);
 });
