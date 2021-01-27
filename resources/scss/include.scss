@@ -1,0 +1,16 @@
+html {
+    overflow-x: hidden;
+}
+
+body {
+    padding-top: 56px;
+}
+
+.nav-item.active .nav-link {
+    color: #fff;
+}
+
+.breadcrumb-container {
+    margin-top: 5px;
+    margin-left: 8px;
+}

@@ -5,5 +5,5 @@
 @overwrite
 
 @section('content')
-    <h1>Home page content</h1>
+    <h1 class="home-page-content">Home page content</h1>
 @endsection
