@@ -1,7 +1,11 @@
 // High Importance
 1. Add auth for admin pages
 
+// Mid Importance
+1. Deal with webpack - need to separate JS and CSS file into modules to load only what is necessary
+
 // Low importance
 1. Squash migrations into single migration when most work is done
 
 2. Refactor breadcrumb title in controllers
+
