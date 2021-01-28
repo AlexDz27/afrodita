@@ -11,7 +11,7 @@ export class AddAttributesButton extends React.Component {
 
     addAttribute() {
         const name = prompt("Please, enter the name of a new attribute:");
-        if (name === '') return;
+        if (name === '' || name === null) return;
         
         this.setState({attributes: [...this.state.attributes, {name}]});
     }
