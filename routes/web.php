@@ -21,7 +21,7 @@ Route::prefix('catalog')->group(function () {
 });
 
 // Admin
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/products/edit/{id}', [AdminController::class, 'editProduct'])->name('editProduct');

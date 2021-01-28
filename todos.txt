@@ -9,3 +9,4 @@
 
 2. Refactor breadcrumb title in controllers
 
+3. Refactor AuthAdmin. Mb add auth() method
