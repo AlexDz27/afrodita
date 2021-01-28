@@ -10,3 +10,5 @@
 2. Refactor breadcrumb title in controllers
 
 3. Refactor AuthAdmin. Mb add auth() method
+
+4. Folder "pages/" for /views like home, search...

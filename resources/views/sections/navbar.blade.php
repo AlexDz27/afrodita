@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 
 $route = Route::currentRouteName();
 $isCatalogRoute = ($route === 'catalog') || (Route::getCurrentRoute()->action['prefix'] === '/catalog');
+
+// Get action url for search
+use App\Http\Controllers\SearchController;
+
+$url = action([SearchController::class, 'show']);
 @endphp
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -21,7 +26,7 @@ $isCatalogRoute = ($route === 'catalog') || (Route::getCurrentRoute()->action['p
                 </li>
             </ul>
 
-            <form class="d-flex">
+            <form class="d-flex" action="{{ $url }}">
                 @if ($route === 'home')
                     <div id="show-number-container" data-phone="{{ config('admin.phone') }}">
                         {{-- <ShowPhoneButton phone={phone} /> in /public/js/index.js --}}
@@ -29,7 +34,7 @@ $isCatalogRoute = ($route === 'catalog') || (Route::getCurrentRoute()->action['p
                     </div>
                 @endif
 
-                <input class="form-control me-2" type="search" placeholder="Search in catalog...">
+                <input name="query" class="form-control me-2" type="search" placeholder="Search in catalog...">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>

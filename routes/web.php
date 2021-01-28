@@ -5,6 +5,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SearchController;
 
 // Pages
 Route::view('/', 'home')->name('home');
@@ -19,6 +20,9 @@ Route::prefix('catalog')->group(function () {
     Route::get('/products', [ProductController::class, 'list'])->name('products');
     Route::get('/products/{id}', [ProductController::class, 'show'])->name('productsShow');
 });
+
+// Search
+Route::get('/search', [SearchController::class, 'show']);
 
 // Admin
 Route::prefix('admin')->middleware('admin.auth')->group(function () {
