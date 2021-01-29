@@ -12,6 +12,4 @@ $route = Route::currentRouteName();
     window.route = '{{ $route }}';
 </script>
 
-@if ($route === 'home' || $route === 'editProduct')
-    <script src="/js/index.js"></script>
-@endif
+<script src="/js/index.js"></script>
