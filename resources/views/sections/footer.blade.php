@@ -10,6 +10,7 @@ $route = Route::currentRouteName();
 
 <script>
     window.route = '{{ $route }}';
+    window.apiUrl = '{{ config('app.url_api') }}';
 </script>
 
 <script src="/js/index.js"></script>

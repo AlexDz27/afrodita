@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ShowPhoneButton } from "./components/ShowPhoneButton/ShowPhoneButton";
 import { AddAttributesButton } from "./components/AddAttributesButton/AddAttributesButton";
+import { SearchCatalogInput } from "./components/SearchCatalogInput/SearchCatalogInput";
 
 // Render "Show our number" button in navbar. On click, shows telephone number of the studio.
 if (window.route === 'home') {
@@ -17,3 +18,7 @@ if (window.route === 'editProduct') {
 
     ReactDOM.render(<AddAttributesButton />, container);
 }
+
+// Render search for catalog
+const searchContainer = document.getElementById('catalog-search-container');
+ReactDOM.render(<SearchCatalogInput />, searchContainer);
