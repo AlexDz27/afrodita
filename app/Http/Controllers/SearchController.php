@@ -13,7 +13,7 @@ class SearchController extends Controller
 
         $searchables = $this->getCatalogSearchables($query);
 
-        return view('search', [
+        return view('pages.search', [
             'breadCrumbTitle' => 'Search',
             'query' => $query,
             'searchables' => $searchables,

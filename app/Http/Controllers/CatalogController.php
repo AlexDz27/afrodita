@@ -12,7 +12,7 @@ class CatalogController extends Controller
         $services = Service::all();
         $products = Product::all();
 
-        return view('catalog', [
+        return view('pages.catalog', [
             'breadCrumbTitle' => 'Catalog',
             'services' => $services,
             'products' => $products

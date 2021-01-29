@@ -8,8 +8,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SearchController;
 
 // Pages
-Route::view('/', 'home')->name('home');
-Route::view('/about-us', 'about-us', ['breadCrumbTitle' => 'About Us'])->name('aboutUs');
+Route::view('/', 'pages.home')->name('home');
+Route::view('/about-us', 'pages.about-us', ['breadCrumbTitle' => 'About Us'])->name('aboutUs');
 
 // Catalog pages
 Route::get('/catalog', [CatalogController::class, 'list'])->name('catalog');
