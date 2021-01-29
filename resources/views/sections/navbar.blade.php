@@ -29,7 +29,7 @@ $url = action([SearchController::class, 'show']);
             <form class="d-flex" action="{{ $url }}">
                 @if ($route === 'home')
                     <div id="show-number-container" data-phone="{{ config('admin.phone') }}">
-                        {{-- <ShowPhoneButton phone={phone} /> in /public/js/index.js --}}
+                        {{-- <ShowPhoneButton phone={phone} /> in /resources/js//components/ShowPhoneButton/ --}}
                         <button class="btn btn-warning" type="button" style="width: 170px; margin-right: 35px;">Show our phone</button>
                     </div>
                 @endif
