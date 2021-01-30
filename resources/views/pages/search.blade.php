@@ -15,9 +15,9 @@ use Illuminate\Support\Str;
                 <h1 style="margin-bottom: 50px;">You've typed: {{ $query }}</h1>
 
                 @forelse ($items as $item)
-                    <div style="display: flex;">
+                    <div style="display: flex; margin-bottom: 20px;">
                         @if ($item->photo)
-                            <img style="margin-right: 22px;" src="{{ $item->photo }}" alt="{{ $item->name }}" width="150">
+                            <img style="margin-right: 22px;" src="{{ $item->photo }}" alt="{{ $item->name }}" width="100">
                         @endif
                         <div style="display: flex; flex-direction: column;">
                             <a href="{{ url("/catalog/{$item->type}s/{$item->id}") }}"><h2>{{ $item->name }}</h2></a>
