@@ -14,9 +14,9 @@ use Illuminate\Support\Str;
             <div class="col">
                 <h1>You've typed: {{ $query }}</h1>
 
-                @forelse ($searchables as $searchable)
-                    <a href="{{ url("/catalog/{$searchable->type}s/{$searchable->id}") }}"><h2>{{ $searchable->name }}</h2></a>
-                    <p>{{ Str::words($searchable->description, 10, '...') }}</p>
+                @forelse ($items as $item)
+                    <a href="{{ url("/catalog/{$item->type}s/{$item->id}") }}"><h2>{{ $item->name }}</h2></a>
+                    <p>{{ Str::words($item->description, 10, '...') }}</p>
                 @empty
                     <h2>Sorry, nothing has been found.</h2>
                 @endforelse

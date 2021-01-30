@@ -4,7 +4,7 @@ export class SearchCatalogInput extends React.Component {
     constructor(props) {
         super(props);
 
-        this.apiUrl = `${window.apiUrl}/search?query=`;
+        this.apiUrl = `${window.apiUrl}/search?type=input-ajax&query=`;
 
         this.handleChange = this.handleChange.bind(this);
 

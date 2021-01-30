@@ -5,7 +5,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\SearchController;
+use App\Http\Controllers\CatalogSearchController;
 
 // Pages
 Route::view('/', 'pages.home')->name('home');
@@ -27,7 +27,7 @@ Route::prefix('catalog')->name('catalog.')->group(function () {
 });
 
 // Search
-Route::get('/search', [SearchController::class, 'show']);
+Route::get('/search', [CatalogSearchController::class, 'show']);
 
 // Admin
 Route::prefix('admin')->middleware('admin.auth')->group(function () {

@@ -1,8 +1,8 @@
 @php
 /** @var Illuminate\Routing\Route $route */
-use App\Http\Controllers\SearchController;
+use App\Http\Controllers\CatalogSearchController;
 
-$action = action([SearchController::class, 'show']);
+$action = action([CatalogSearchController::class, 'show']);
 @endphp
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -20,7 +20,7 @@ $action = action([SearchController::class, 'show']);
                 </li>
             </ul>
 
-            <form class="d-flex" action="{{ $action }}">
+            <form class="d-flex" action="{{ $action }}" method="get">
                 @if ($route->named('home'))
                     <div id="show-number-container" data-phone="{{ config('admin.phone') }}">
                         {{-- <ShowPhoneButton phone={phone} /> in /resources/js/components/ShowPhoneButton/ --}}
