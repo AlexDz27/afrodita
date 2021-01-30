@@ -35,6 +35,7 @@ $url = action([SearchController::class, 'show']);
                 @endif
 
                 <div id="catalog-search-container">
+                    {{-- <SearchCatalogInput /> in /resources/js/components/SearchCatalogInput/ --}}
                     <input name="query" class="form-control me-2" type="search" placeholder="Search in catalog...">
                 </div>
                 <button class="btn btn-outline-success" type="submit">Search</button>
