@@ -5,20 +5,15 @@ import { AddAttributesButton } from "./components/AddAttributesButton/AddAttribu
 import { SearchCatalogInput } from "./components/SearchCatalogInput/SearchCatalogInput";
 
 // Render "Show our number" button in navbar. On click, shows telephone number of the studio.
-if (window.route === 'home') {
-    const container = document.getElementById('show-number-container');
-    const phone = container.dataset.phone; // get phone data from "data-phone=":phone" in container
-
-    ReactDOM.render(<ShowPhoneButton phone={phone} />, container);
-}
-
-// Render "Show our number" button in navbar. On click, shows telephone number of the studio.
-if (window.route === 'editProduct') {
-    const container = document.getElementById('add-attributes-button-container');
-
-    ReactDOM.render(<AddAttributesButton />, container);
-}
+const showPhoneButtonContainer = document.getElementById('show-phone-button-container');
+const phone = showPhoneButtonContainer.dataset.phone;
+ReactDOM.render(<ShowPhoneButton phone={phone} />, showPhoneButtonContainer);
 
 // Render search for catalog
 const searchContainer = document.getElementById('catalog-search-container');
 ReactDOM.render(<SearchCatalogInput />, searchContainer);
+
+// On admin page, render add attributes button
+if (document.getElementById('add-attributes-button-container')) {
+    ReactDOM.render(<AddAttributesButton />, document.getElementById('add-attributes-button-container'));
+}

@@ -9,7 +9,6 @@ $route = Route::currentRouteName();
 </footer>
 
 <script>
-    window.route = '{{ $route }}';
     window.apiUrl = '{{ config('app.url_api') }}';
 </script>
 
