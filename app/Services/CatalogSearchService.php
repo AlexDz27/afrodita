@@ -83,13 +83,13 @@ class CatalogSearchService
 
         if ($this->type === self::TYPE_WEB) {
             $this->sqlQuery = "SELECT id, name, description, photos, 'product' AS type FROM products WHERE name LIKE ? 
-            UNION SELECT id, name, description, photos, 'service' AS type FROM services WHERE name LIKE ? OR description LIKE ?";
+            UNION SELECT id, name, description, photos, 'service' AS type FROM services WHERE name LIKE ?";
         }
 
         // The difference between this and TYPE_WEB - here we don't SELECT "description" column
         if ($this->type === self::TYPE_INPUT_AJAX) {
             $this->sqlQuery = "SELECT id, name, photos, 'product' AS type FROM products WHERE name LIKE ? 
-            UNION SELECT id, name, photos, 'service' AS type FROM services WHERE name LIKE ? OR description LIKE ?";
+            UNION SELECT id, name, photos, 'service' AS type FROM services WHERE name LIKE ?";
         }
 
         $this->rawData = DB::select(DB::raw($this->sqlQuery),
