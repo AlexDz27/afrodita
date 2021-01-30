@@ -56,23 +56,19 @@ class CatalogSearchService
 
     private function prepareData()
     {
-        if ($this->type === self::TYPE_WEB) {
-            $this->resultData = $this->rawData;
-        }
-
-        if ($this->type === self::TYPE_INPUT_AJAX) {
-            foreach ($this->rawData as $item) {
+        foreach ($this->rawData as $item) {
+            if ($this->type === self::TYPE_INPUT_AJAX) {
                 $item->url = config('app.url') . "/catalog/{$item->type}s/{$item->id}";
-
-                if ($item->photos !== 'null') {
-                    $item->photo = json_decode($item->photos)[0]->file_path;
-                } else {
-                    $item->photo = null;
-                }
-                unset($item->photos);
-
-                $this->resultData[] = $item;
             }
+
+            if ($item->photos !== 'null') {
+                $item->photo = json_decode($item->photos)[0]->file_path;
+            } else {
+                $item->photo = null;
+            }
+            unset($item->photos);
+
+            $this->resultData[] = $item;
         }
     }
 
@@ -85,12 +81,12 @@ class CatalogSearchService
             );
         }
 
-        // TODO: also select photos and render them in search page
         if ($this->type === self::TYPE_WEB) {
-            $this->sqlQuery = "SELECT id, name, description, 'product' AS type FROM products WHERE name LIKE ? 
-            UNION SELECT id, name, description, 'service' AS type FROM services WHERE name LIKE ? OR description LIKE ?";
+            $this->sqlQuery = "SELECT id, name, description, photos, 'product' AS type FROM products WHERE name LIKE ? 
+            UNION SELECT id, name, description, photos, 'service' AS type FROM services WHERE name LIKE ? OR description LIKE ?";
         }
 
+        // The difference between this and TYPE_WEB - here we don't SELECT "description" column
         if ($this->type === self::TYPE_INPUT_AJAX) {
             $this->sqlQuery = "SELECT id, name, photos, 'product' AS type FROM products WHERE name LIKE ? 
             UNION SELECT id, name, photos, 'service' AS type FROM services WHERE name LIKE ? OR description LIKE ?";
