@@ -8,7 +8,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col text-center">
-                <h3><a class="display-1" href="{{ route('services') }}">Services</a></h3>
+                <h3><a class="display-1" href="{{ route('catalog.services') }}">Services</a></h3>
 
                 <div class="card">
                     <ul class="list-group list-group-flush">
@@ -26,7 +26,7 @@
             </div>
 
             <div class="col text-center">
-                <h3><a class="display-1" href="{{ route('products') }}">Products</a></h3>
+                <h3><a class="display-1" href="{{ route('catalog.products') }}">Products</a></h3>
 
                 <div class="card">
                     <ul class="list-group list-group-flush">

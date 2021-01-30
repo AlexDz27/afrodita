@@ -11,14 +11,19 @@ use App\Http\Controllers\SearchController;
 Route::view('/', 'pages.home')->name('home');
 Route::view('/about-us', 'pages.about-us', ['breadCrumbTitle' => 'About Us'])->name('aboutUs');
 
-// Catalog pages
-Route::get('/catalog', [CatalogController::class, 'list'])->name('catalog');
-Route::prefix('catalog')->group(function () {
-    Route::get('/services', [ServiceController::class, 'list'])->name('services');
-    Route::get('/services/{id}', [ServiceController::class, 'show'])->name('servicesShow');
+// Catalog
+Route::prefix('catalog')->name('catalog.')->group(function () {
+    Route::get('/', [CatalogController::class, 'list'])->name('catalog');
 
-    Route::get('/products', [ProductController::class, 'list'])->name('products');
-    Route::get('/products/{id}', [ProductController::class, 'show'])->name('productsShow');
+    Route::prefix('services')->group(function () {
+        Route::get('/', [ServiceController::class, 'list'])->name('services');
+        Route::get('/{id}', [ServiceController::class, 'show'])->name('servicesShow');
+    });
+
+    Route::prefix('products')->group(function () {
+        Route::get('/', [ProductController::class, 'list'])->name('products');
+        Route::get('/{id}', [ProductController::class, 'show'])->name('productsShow');
+    });
 });
 
 // Search
