@@ -27,8 +27,6 @@ class CatalogSearchService
         $this->query = $query;
 
         $this->availableTypes = $this->getAvailableTypes();
-
-        return $this;
     }
 
     public function getAppropriateResponse()
