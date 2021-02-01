@@ -28,7 +28,7 @@ $action = action([CatalogSearchController::class, 'show']);
             <form class="d-flex" action="{{ $action }}" method="get">
                 <div id="catalog-search-container">
                     {{-- <SearchCatalogInput /> in /resources/js/components/SearchCatalogInput/ --}}
-                    <input name="query" class="form-control me-2" type="search" placeholder="Search in catalog...">
+                    <input name="query" required class="form-control me-2" type="search" placeholder="Search in catalog...">
                 </div>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>

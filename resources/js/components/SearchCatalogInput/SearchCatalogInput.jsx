@@ -40,7 +40,7 @@ export class SearchCatalogInput extends React.Component {
 
         return (
             <div className="catalog-search">
-                <input onChange={this.handleChange} name="query" className="form-control me-2"
+                <input onChange={this.handleChange} name="query" required className="form-control me-2"
                        type="search" placeholder="Search in catalog..."
                 />
 
