@@ -21,11 +21,8 @@ class CatalogSearchService
     private array $rawData = [];
     private array $resultData = [];
 
-    public function __construct(string $type, string $query)
+    public function __construct()
     {
-        $this->type = $type;
-        $this->query = $query;
-
         $this->availableTypes = $this->getAvailableTypes();
     }
 
@@ -44,8 +41,11 @@ class CatalogSearchService
         }
     }
 
-    public function search()
+    public function search(string $type, string $query)
     {
+        $this->type = $type;
+        $this->query = $query;
+
         $this->fetchRawData();
         $this->prepareData();
 
