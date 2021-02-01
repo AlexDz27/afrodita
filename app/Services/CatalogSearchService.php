@@ -61,7 +61,7 @@ class CatalogSearchService
                 $item->url = config('app.url') . "/catalog/{$item->type}s/{$item->id}";
             }
 
-            if ($item->photos !== 'null') {
+            if ($item->photos !== null) {
                 $item->photo = json_decode($item->photos)[0]->file_path;
             } else {
                 $item->photo = null;
