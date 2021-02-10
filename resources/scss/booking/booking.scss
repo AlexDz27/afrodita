@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+}
+
+.booking {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  color: #000;
+  //background: rgb(142,161,239);
+  //background: linear-gradient(0deg, rgba(142,161,239,1) 0%, rgba(142,161,236,1) 14%);
+}
+
+.container {
+  box-sizing: border-box;
+  max-width: 1220px;
+  padding: 0 20px;
+  margin: 0 auto;
+}

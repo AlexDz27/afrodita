@@ -7,7 +7,10 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "watch": "webpack --config webpack.config.dev.js --watch",
         "build-dev": "webpack --config webpack.config.dev.js",
-        "build-prod": "webpack --config webpack.config.prod.js"
+        "build-prod": "webpack --config webpack.config.prod.js",
+
+        "watch-booking": "webpack --config webpack.config.dev.js --env booking --watch",
+        "build-prod-booking": "webpack --config webpack.config.prod.js --env booking"
     },
     "keywords": [],
     "author": "Alex Dzyuba <alexeydzyuba27@gmail.com>",

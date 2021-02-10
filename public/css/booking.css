@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+}
+
+.booking {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  color: #000;
+}
+
+.container {
+  box-sizing: border-box;
+  max-width: 1220px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+.header {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px 0;
+}
+
+.header__welcome {
+  font-size: 42px;
+  margin: 0;
+}
+
+.app__header {
+  box-sizing: border-box;
+  text-align: center;
+}
+.service-categories-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.service-category {
+  width: 280px;
+  position: relative;
+  z-index: 5;
+  min-height: 130px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  background-color: #ccc;
+  margin-right: 25px;
+  margin-bottom: 30px;
+  background-position: center;
+}
+.service-category :last-child {
+  margin-right: 0;
+}
+.service-category::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #efefef;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+.service-category a {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  z-index: 10;
+  line-height: 130px;
+}
+.footer {
+  text-align: center;
+  padding: 8px 0;
+  border-top: 1px solid gray;
+}
+.offer {
+  background-color: #5D7EEF;
+  color: #fff;
+  padding: 14px 0;
+  text-align: center;
+}

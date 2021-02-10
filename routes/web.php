@@ -6,6 +6,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CatalogSearchController;
+use App\Http\Controllers\BookingController;
 
 // Pages
 Route::view('/', 'pages.home')->name('home');
@@ -36,3 +37,6 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::get('/products/edit/{id}', [AdminController::class, 'editProduct'])->name('editProduct');
     Route::post('/products/edit/{id}', [AdminController::class, 'editProduct']);
 });
+
+// Booking
+Route::get('/booking', [BookingController::class, 'index']);
