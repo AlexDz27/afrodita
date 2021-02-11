@@ -1,40 +1,60 @@
-import React from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import './App.scss';
 import Header from "./components/Header/Header";
 import ServiceCategoriesList from "./components/ServiceCategoriesList/ServiceCategoriesList";
+import ServicesList from "./components/ServicesList/ServicesList";
+import OrderPane from "./components/OrderPane/OrderPane";
 
 const App = () => {
-    const categories = [
-        {
-            name: 'Face care',
-            img: '/img/booking/service-categories/face-care.png'
-        },
-        {
-            name: 'Hair removal',
-            img: '/img/booking/service-categories/hair-removal.jpg'
-        },
-        {
-            name: 'Massage',
-            img: '/img/booking/service-categories/massage.jpg'
-        },
-        {
-            name: 'Manicure',
-            img: '/img/booking/service-categories/manicure.jpg'
-        },
-        {
-            name: 'Pedicure',
-            img: '/img/booking/service-categories/pedicure.png'
-        },
-        {
-            name: 'Brows',
-            img: '/img/booking/service-categories/brows.png'
-        }
-    ];
+    const [order, _setOrder] = useState({
+        category: null,
+        service: null,
+        time: null,
+        contactInfo: null
+    });
+    const orderRef = useRef(order);
+    const setOrder = (order) => {
+        orderRef.current = order;
+        _setOrder(order);
+    }
+
+    // Possible value: category, service, time, contactInfo
+    const [stage, setStage] = useState('category');
+
+    useEffect(() => {
+        // Tell OrderPane to not show when app loads
+        document.querySelector('.order-pane').classList.remove('order-pane--inactive');
+
+        // If clicked outside, unset current order stage choice
+        window.addEventListener('click', (evt) => {
+            if (evt.target.classList.contains('active') || evt.target.classList.contains('next-button')) return;
+
+            if (orderRef.current[stage]) setOrder({...order, stage: null});
+        });
+    }, []);
+
+    const handleCategoryChoose = (evt) => {
+        evt.preventDefault();
+
+        const chosenCategory = evt.currentTarget.text;
+
+        setOrder({...order, category: chosenCategory});
+    }
+
+    const handleNextStage = () => {
+        console.log(12345);
+        // setStage();
+    }
 
     return (
         <div className="app container">
           <Header />
-          <ServiceCategoriesList categories={categories} />
+          <ServiceCategoriesList order={order} onCategoryChoose={handleCategoryChoose} onNextStage={handleNextStage} />
+
+          {/*<Stage stage={stage} />*/}
+          {/*<ServicesList order={order} />*/}
+
+          <OrderPane order={order} />
         </div>
     );
 }

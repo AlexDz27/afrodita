@@ -1,0 +1,48 @@
+@keyframes order-pane-appear {
+    from {
+        top: -300px;
+    }
+
+    to {
+        top: 50px;
+    }
+}
+@keyframes order-pane-disappear {
+    from {
+        top: 50px;
+    }
+
+    to {
+        top: -300px;
+    }
+}
+
+.order-pane {
+    position: fixed;
+    width: 300px;
+    min-height: 300px;
+    background-color: rgba(197, 66, 163, 0.22);
+    top: -300px;
+    right: 40px;
+    box-sizing: border-box;
+    padding: 20px;
+}
+.order-pane--active {
+    animation-name: order-pane-appear;
+    animation-duration: .45s;
+    animation-fill-mode: forwards;
+}
+.order-pane--inactive {
+    animation-name: order-pane-disappear;
+    animation-duration: .45s;
+    animation-fill-mode: forwards;
+}
+
+.order-pane__heading {
+    margin-top: 0;
+}
+
+.order-pane ul {
+    list-style: none;
+    padding: 0;
+}
