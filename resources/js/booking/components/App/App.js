@@ -34,13 +34,14 @@ const App = () => {
     const handleCategoryChoose = (evt) => {
         evt.preventDefault();
 
-        const chosenCategory = evt.currentTarget.text;
+        const chosenCategory = evt.target.innerText;
 
         setOrder({...order, category: chosenCategory});
     }
 
     const handleNextStage = () => {
-        setStage('service');
+
+        // setStage('service');
     }
 
     return (
