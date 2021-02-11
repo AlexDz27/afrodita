@@ -1,9 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import './App.scss';
-import Header from "./components/Header/Header";
-import ServiceCategoriesList from "./components/ServiceCategoriesList/ServiceCategoriesList";
-import ServicesList from "./components/ServicesList/ServicesList";
 import OrderPane from "./components/OrderPane/OrderPane";
+import Stage from "./components/Stage/Stage";
 
 const App = () => {
     const [order, _setOrder] = useState({
@@ -29,7 +27,7 @@ const App = () => {
         window.addEventListener('click', (evt) => {
             if (evt.target.classList.contains('active') || evt.target.classList.contains('next-button')) return;
 
-            if (orderRef.current[stage]) setOrder({...order, stage: null});
+            if (orderRef.current[stage]) setOrder({...order, [stage]: null});
         });
     }, []);
 
@@ -42,17 +40,14 @@ const App = () => {
     }
 
     const handleNextStage = () => {
-        console.log(12345);
-        // setStage();
+        setStage('service');
     }
 
     return (
         <div className="app container">
-          <Header />
-          <ServiceCategoriesList order={order} onCategoryChoose={handleCategoryChoose} onNextStage={handleNextStage} />
+          <Stage stage={stage} order={order} onCategoryChoose={handleCategoryChoose} onNextStage={handleNextStage} />
 
-          {/*<Stage stage={stage} />*/}
-          {/*<ServicesList order={order} />*/}
+          <button disabled={order.category === null} onClick={handleNextStage} className="next-button app__next-button">Next</button>
 
           <OrderPane order={order} />
         </div>

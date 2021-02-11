@@ -1,11 +1,11 @@
 import React from 'react';
-import './ServiceCategoriesList.scss';
+import './ServiceCategories.scss';
 
-const ServiceCategoriesList = ({order, onCategoryChoose, onNextStage}) => {
+const ServiceCategories = ({order, onCategoryChoose, onNextStage}) => {
     // TODO: deal with ugly styles in all service categories. Need to be in SCSS. Also I can create
     // object with info about each service category
     return (
-        <div>
+        <div className="service-categories-container">
             <ul className="service-categories-list">
               <li style={{backgroundImage: 'url(/img/booking/service-categories/face-care.png)'}}
                   className="service service-category--face"
@@ -50,10 +50,8 @@ const ServiceCategoriesList = ({order, onCategoryChoose, onNextStage}) => {
                   </a>
               </li>
             </ul>
-
-            <button disabled={order.category === null} onClick={onNextStage} className="next-button app__next-button">Next</button>
         </div>
     );
 }
 
-export default ServiceCategoriesList;
+export default ServiceCategories;
