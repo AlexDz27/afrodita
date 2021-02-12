@@ -13,7 +13,7 @@ module.exports = (env) => {
 
     return {
         mode: 'production',
-        entry: workingOnBooking ? './resources/js/booking/booking.js' : './resources/webpack.entry.js',
+        entry: workingOnBooking ? './resources/js/booking/index.js' : './resources/js/site/index.js',
         output: {
             path: path.resolve('./public'),
             filename: workingOnBooking ? 'js/booking.js' :  'js/index.js',

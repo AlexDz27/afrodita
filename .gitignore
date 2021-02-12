@@ -2,3 +2,4 @@
 /node_modules
 .phpunit.result.cache
 .docker/mysql/db-data/
+public/js/index.js.LICENSE.txt

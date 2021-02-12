@@ -1,4 +1,4 @@
-import '../../scss/booking/booking.scss';
+import '../../scss/booking/index.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 

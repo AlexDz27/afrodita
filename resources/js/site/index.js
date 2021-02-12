@@ -1,3 +1,4 @@
+import '../../scss/site/index.scss';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ShowPhoneButton } from "./components/ShowPhoneButton/ShowPhoneButton";

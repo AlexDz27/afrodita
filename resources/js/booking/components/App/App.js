@@ -40,7 +40,7 @@ const App = () => {
     }
 
     const handleNextStage = () => {
-
+        console.log(window.location);
         // setStage('service');
     }
 
