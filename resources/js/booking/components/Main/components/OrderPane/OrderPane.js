@@ -1,9 +1,18 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import './OrderPane.scss';
 
 const OrderPane = ({order}) => {
+    const component = useRef();
+
+    useEffect(() => {
+        // Fix first inactive animation
+        component.current.classList.remove('order-pane--inactive');
+    }, []);
+
+    const choosingStarted = order.category !== null;
+
     return (
-        <div className={`order-pane ${order.category ? 'order-pane--active' : 'order-pane--inactive'}`}>
+        <div className={`order-pane ${choosingStarted ? 'order-pane--active' : 'order-pane--inactive'}`} ref={component}>
             <h2 className="order-pane__heading">Your order:</h2>
             <ul>
                 {order.category && <li>Category: <b>{order.category}</b></li>}
