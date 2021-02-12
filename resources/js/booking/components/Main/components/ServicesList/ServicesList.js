@@ -1,16 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './ServicesList.scss';
+import servicesData from './servicesData';
+import Service from "./Service";
 
-const ServicesList = ({order}) => {
-    const [services, setServices] = useState([]);
+const ServicesList = ({category, order, onServiceChoose}) => {
+    const services = servicesData[category];
 
     return (
         <ul className="services-list">
-            <li className="service">
-                <a href="#">
-                    Face lifting
-                </a>
-            </li>
+            {services.map((service, idx) => (
+                <li className="services-list__item" key={idx}>
+                    <Service service={service} order={order} onServiceChoose={onServiceChoose} />
+                </li>
+            ))}
         </ul>
     );
 }

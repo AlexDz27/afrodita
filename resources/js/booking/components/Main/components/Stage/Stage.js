@@ -1,14 +1,17 @@
 import React from 'react';
 import './Stage.scss';
 import ServiceCategories from "../ServiceCategories/ServiceCategories";
+import ServicesList from "../ServicesList/ServicesList";
 
-const Stage = ({stage, order, onCategoryChoose, onNextStage}) => {
+const Stage = ({stage, order, onCategoryChoose, onNextStage, onServiceChoose}) => {
     const stageToHeader = {
         'category': 'Choose service category:',
         'service': 'Choose your service:',
-        'time': 'your time and date:',
+        'time': 'Choose your time and date:',
         'contactInfo': 'Please, leave us info on how to contact you:'
     };
+
+    const category = order.category;
 
     return (
         <div className="stage">
@@ -21,7 +24,7 @@ const Stage = ({stage, order, onCategoryChoose, onNextStage}) => {
             }
 
             {stage === 'service' &&
-                <div>Hey, I'm a service stage</div>
+                <ServicesList order={order} onServiceChoose={onServiceChoose} category={category} />
             }
         </div>
     );

@@ -11,7 +11,7 @@ const ServiceCategories = ({order, onCategoryChoose, onNextStage}) => {
                     <li key={idx} className="service-categories-list__item">
                         <button style={{backgroundImage: `url('${cat.img}')`}}
                                 onClick={onCategoryChoose}
-                                className={`service ${order.category === cat.name ? 'active' : ''}`}>
+                                className={`service-category ${order.category === cat.name ? 'active' : ''}`}>
                             {cat.name}
                         </button>
                     </li>

@@ -19,11 +19,15 @@ const App = () => {
     }
 
     // Possible value: category, service, time, contactInfo
-    const [stage, setStage] = useState('category');
+    const [stage, _setStage] = useState('category');
+    const stageRef = useRef(stage);
+    const setStage = (stage) => {
+        stageRef.current = stage;
+        _setStage(stage);
+    }
 
     const handleNextStage = () => {
-        console.log(window.location);
-        // setStage('service');
+        setStage('service');
     }
 
     const handleCategoryChoose = (evt) => {
@@ -34,25 +38,31 @@ const App = () => {
         setOrder({...order, category: chosenCategory});
     }
 
-    useEffect(() => {
-        const app = document.querySelector('.app');
+    const handleServiceChoose = (evt) => {
+        evt.preventDefault();
+
+        const chosenService = evt.target.innerText;
+
+        setOrder({...order, service: chosenService});
+    }
+
+    const handleOutsideClick = (evt) => {
+        // todo: refactor using ref
         const main = document.querySelector('.main');
 
-        app.addEventListener('click', (evt) => {
-            if (main.contains(evt.target)) return;
+        if (main.contains(evt.target)) return;
 
-            if (stage === 'category' && orderRef.current.category !== null) {
-                setOrder({...order, category: null});
-            }
-        })
-    }, []);
+        if (stageRef.current === 'category') {
+            setOrder({...order, category: null});
+        }
+    }
 
     return (
-        <div className="app">
+        <div className="app" onClick={handleOutsideClick}>
             <Offer />
             <Header />
 
-            <Main order={order} stage={stage} onCategoryChoose={handleCategoryChoose} onNextStage={handleNextStage} />
+            <Main order={order} stage={stage} onCategoryChoose={handleCategoryChoose} onNextStage={handleNextStage} onServiceChoose={handleServiceChoose} />
 
             <Footer />
         </div>
