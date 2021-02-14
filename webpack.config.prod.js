@@ -20,7 +20,7 @@ module.exports = (env) => {
         },
         plugins: [
             new MiniCssExtractPlugin({
-                filename: 'css/style.css'
+                filename: workingOnBooking ? 'css/booking.css' : 'css/style.css'
             }),
             new PurgeCSSPlugin({
                 paths: glob.sync([PURGE_PATHS.resources], { nodir: true })
