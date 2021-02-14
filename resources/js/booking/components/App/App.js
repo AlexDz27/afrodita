@@ -6,28 +6,58 @@ import Footer from "../Footer/Footer";
 import Main from "../Main/Main";
 
 const App = () => {
-    const [order, _setOrder] = useState({
+    const [order, setOrder] = useState({
         category: null,
         service: null,
         time: null,
         contactInfo: null
     });
-    const orderRef = useRef(order);
-    const setOrder = (order) => {
-        orderRef.current = order;
-        _setOrder(order);
-    }
 
-    // Possible value: category, service, time, contactInfo
-    const [stage, _setStage] = useState('category');
-    const stageRef = useRef(stage);
-    const setStage = (stage) => {
-        stageRef.current = stage;
-        _setStage(stage);
-    }
+    // TODO: import stager
+    const _stager = {
+        stages: [
+            {name: 'category', index: 0},
+            {name: 'service', index: 1},
+        ],
 
-    const handleNextStage = () => {
-        setStage('service');
+        current: {name: 'category', index: 0},
+
+        next() {
+            let currentIdx = this.stages.find(stage => this.current.name === stage.name).index;
+            let nextIdx = currentIdx + 1;
+
+            const next = this.stages.find(stage => stage.index === nextIdx);
+            if (next === undefined) return this.current.name;
+
+            this.current = next;
+
+            console.log(this.current)
+
+            return this.current.name;
+        },
+
+        prev() {
+            console.log(this.current)
+            console.log(this)
+            let currentIdx = this.stages.find(stage => this.current.name === stage.name).index;
+            let prevIdx = currentIdx - 1;
+
+            const prev = this.stages.find(stage => stage.index === prevIdx);
+            if (prev === undefined) return this.current.name;
+
+            this.current = prev;
+
+            return this.current.name;
+        }
+    };
+    const stager = useRef(_stager).current;
+    const [stage, setStage] = useState('category');
+    const handleNextClick = () => {
+        setStage(stager.next());
+    }
+    const handlePrevClick = () => {
+        setOrder({...order, service: null});
+        setStage(stager.prev());
     }
 
     const handleCategoryChoose = (evt) => {
@@ -52,7 +82,7 @@ const App = () => {
 
         if (main.contains(evt.target)) return;
 
-        if (stageRef.current === 'category') {
+        if (stage === 'category') {
             setOrder({...order, category: null});
         }
     }
@@ -62,7 +92,13 @@ const App = () => {
             <Offer />
             <Header />
 
-            <Main order={order} stage={stage} onCategoryChoose={handleCategoryChoose} onNextStage={handleNextStage} onServiceChoose={handleServiceChoose} />
+            <Main order={order}
+                  stage={stage}
+                  onCategoryChoose={handleCategoryChoose}
+                  onServiceChoose={handleServiceChoose}
+                  onNextClick={handleNextClick}
+                  onPrevClick={handlePrevClick}
+            />
 
             <Footer />
         </div>

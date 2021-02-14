@@ -1,0 +1,24 @@
+.stage__buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stage-button {
+    font-family: inherit;
+    border: 0;
+    cursor: pointer;
+    font-size: 34px;
+    padding: 14px 25px;
+    background-color: #5D7EEF;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.stage-button--prev {
+    background-color: #7f0dbd;
+    margin-right: 20px;
+
+    &:hover {
+        background-color: #660a95;
+    }
+}

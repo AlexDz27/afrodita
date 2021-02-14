@@ -3,7 +3,7 @@ import './Stage.scss';
 import ServiceCategories from "../ServiceCategories/ServiceCategories";
 import ServicesList from "../ServicesList/ServicesList";
 
-const Stage = ({stage, order, onCategoryChoose, onNextStage, onServiceChoose}) => {
+const Stage = ({stage, order, onCategoryChoose, onServiceChoose}) => {
     const stageToHeader = {
         'category': 'Choose service category:',
         'service': 'Choose your service:',
@@ -20,7 +20,7 @@ const Stage = ({stage, order, onCategoryChoose, onNextStage, onServiceChoose}) =
             </header>
 
             {stage === 'category' &&
-                <ServiceCategories order={order} onCategoryChoose={onCategoryChoose} onNextStage={onNextStage} />
+                <ServiceCategories order={order} onCategoryChoose={onCategoryChoose} />
             }
 
             {stage === 'service' &&
