@@ -14,7 +14,7 @@ const Main = ({order, stage, onCategoryChoose, onServiceChoose, onNextClick, onP
                         Back
                     </button>
                 }
-                <button disabled={order.category === null} onClick={onNextClick}
+                <button disabled={order[stage] === null} onClick={onNextClick}
                         className="next-button main__next-button">Next
                 </button>
             </div>

@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Stage.scss';
 import ServiceCategories from "../ServiceCategories/ServiceCategories";
 import ServicesList from "../ServicesList/ServicesList";
+import TimeChooser from "../TimeChooser/TimeChooser";
+import servicesDataByCategory from '../ServicesList/servicesDataByCategory';
 
+// TODO: rename to Stages
 const Stage = ({stage, order, onCategoryChoose, onServiceChoose}) => {
     const stageToHeader = {
         'category': 'Choose service category:',
@@ -11,7 +14,17 @@ const Stage = ({stage, order, onCategoryChoose, onServiceChoose}) => {
         'contactInfo': 'Please, leave us info on how to contact you:'
     };
 
-    const category = order.category;
+    const servicesData = servicesDataByCategory[order.category];
+    console.log(servicesData);
+    if (servicesData !== undefined) {
+
+    }
+    const [servicesArr, setServicesArr] = useState(servicesData);
+    console.log('servicesArr: ', servicesArr);
+
+    const handleActivateService = (name) => {
+        console.log(name);
+    }
 
     return (
         <div className="stage">
@@ -24,7 +37,11 @@ const Stage = ({stage, order, onCategoryChoose, onServiceChoose}) => {
             }
 
             {stage === 'service' &&
-                <ServicesList order={order} onServiceChoose={onServiceChoose} category={category} />
+                <ServicesList services={servicesArr} order={order} onServiceChoose={onServiceChoose} onActivateService={handleActivateService} />
+            }
+
+            {stage === 'time' &&
+                <TimeChooser />
             }
         </div>
     );

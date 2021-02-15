@@ -18,6 +18,7 @@ const App = () => {
         stages: [
             {name: 'category', index: 0},
             {name: 'service', index: 1},
+            {name: 'time', index: 2},
         ],
 
         current: {name: 'category', index: 0},
@@ -31,14 +32,10 @@ const App = () => {
 
             this.current = next;
 
-            console.log(this.current)
-
             return this.current.name;
         },
 
         prev() {
-            console.log(this.current)
-            console.log(this)
             let currentIdx = this.stages.find(stage => this.current.name === stage.name).index;
             let prevIdx = currentIdx - 1;
 
@@ -56,7 +53,7 @@ const App = () => {
         setStage(stager.next());
     }
     const handlePrevClick = () => {
-        setOrder({...order, service: null});
+        setOrder({...order, [stage]: null});
         setStage(stager.prev());
     }
 

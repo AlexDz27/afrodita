@@ -1,24 +1,27 @@
-const servicesData = {
+const servicesDataByCategory = {
     'Face care': [
         {
             name: 'Deep Cleansing Facial',
             description: 'A purifying treatment for overly-oily skin or acne conditions. Gently exfoliating peel' +
                 ' is follow by highly active heat/steam-energized enzymes to break down pore-clogging oil.' +
                 ' Luxurious facial massage and deep-cleansing masque reveals balanced, beautiful skin.' +
-                ' A series of these treatments is suggested to help redirect your skin’s overproduction of sebum.'
+                ' A series of these treatments is suggested to help redirect your skin’s overproduction of sebum.',
+            selected: false
         },
         {
             name: 'Anti-Aging Facial',
             description: 'This opulent anti-aging treatment will visibly transform the skin by firming, lifting' +
                 ' & adding radiance with Vitamins E, A & C. It counteracts the thinning of skin, loss of' +
-                ' elasticity, increased wrinkles and moisture loss. The result is glowing and younger-looking skin.'
+                ' elasticity, increased wrinkles and moisture loss. The result is glowing and younger-looking skin.',
+            selected: false
         },
         {
             name: 'Calm & Hydrate Facial',
             description: 'Perfect for the most sensitive skin, rosecea conditions and/or very dry skin.' +
                 ' Expect gentle touch and products with ingredients such as natural fruits and plant elements' +
                 ' and sea-derived extracts to reduce redness. Light enzyme peel may be used to exfoliate, followed' +
-                ' by a soothing serum and mask and a moisturizer formulated to reduce redness and calm inflammation.'
+                ' by a soothing serum and mask and a moisturizer formulated to reduce redness and calm inflammation.',
+            selected: false
         }
     ],
     'Hair removal': [
@@ -145,4 +148,4 @@ const servicesData = {
     ]
 };
 
-export default servicesData;
+export default servicesDataByCategory;

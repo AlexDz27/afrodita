@@ -1,6 +1,6 @@
-import React, {useState, useRef} from 'react';
+import React, {useRef} from 'react';
 
-const Service = ({service, order, onServiceChoose}) => {
+const Service = ({active, onClick, service, order, onServiceChoose, onActivateService}) => {
     const pane = useRef(null);
 
     const handlePaneClick = () => {
@@ -14,9 +14,9 @@ const Service = ({service, order, onServiceChoose}) => {
 
     return (
         <div onClick={handlePaneClick}>
-            <div className="service-accordion">
+            <div className="service-accordion" onClick={() => onActivateService(service.name)}>
                 <button onClick={onServiceChoose} className={`service ${order.service === service.name ? 'active' : ''}`}>
-                    {service.name}
+                    {service.name}. Am I active: {active}
                 </button>
                 <div className="service-accordion__pane" ref={pane}>
                     <p>
