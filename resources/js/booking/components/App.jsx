@@ -125,6 +125,7 @@ const App = () => {
     const isOrderConfirmed = confirm(
       `Here's your order:
       
+      Category: ${details.serviceCategory}
       Service: ${details.service}
       Time: ${details.time}` +
       
