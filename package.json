@@ -8,7 +8,6 @@
         "watch": "webpack --config webpack.config.dev.js --watch",
         "build-dev": "webpack --config webpack.config.dev.js",
         "build-prod": "webpack --config webpack.config.prod.js",
-
         "watch-booking": "webpack --config webpack.config.dev.js --env booking --watch",
         "build-prod-booking": "webpack --config webpack.config.prod.js --env booking"
     },
@@ -17,7 +16,7 @@
     "license": "ISC",
     "devDependencies": {
         "@babel/core": "^7.12.10",
-        "@babel/plugin-proposal-class-properties": "^7.12.1",
+        "@babel/plugin-transform-runtime": "^7.13.7",
         "@babel/preset-env": "^7.12.11",
         "@babel/preset-react": "^7.12.10",
         "babel-loader": "^8.2.2",
@@ -31,8 +30,10 @@
         "webpack-cli": "^4.3.0"
     },
     "dependencies": {
+        "@babel/runtime": "^7.13.7",
         "bootstrap": "^5.0.0-beta1",
         "react": "^17.0.1",
+        "react-datepicker": "^3.6.0",
         "react-dom": "^17.0.1"
     }
 }

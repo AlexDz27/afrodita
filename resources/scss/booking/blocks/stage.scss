@@ -56,3 +56,23 @@
 .stage__stage-button-back {
   margin-left: 38px;
 }
+
+.stage-button-submit {
+  padding: 14px 105px;
+  width: 100%;
+  background-color: rgb(33, 179, 2);
+
+  &:hover {
+    background-color: #71ff36;
+  }
+
+  &:active {
+    background-color: rgb(33, 179, 2);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: rgba(158, 158, 158, 0.86);
+    opacity: .5;
+  }
+}

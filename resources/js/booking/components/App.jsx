@@ -1,6 +1,7 @@
 import React, { useState, useReducer, useRef } from 'react';
 import Offer from './Offer';
 import AppContent from './AppContent';
+import { getBeautifiedOrderDetails } from '../utils/beatifyOrderDetails';
 
 const initialState = {
   details: {
@@ -10,8 +11,8 @@ const initialState = {
   },
   contactInfo: {
     name: null,
-    email: null,
-    phone: null
+    phone: null,
+    email: null
   }
 };
 
@@ -33,6 +34,16 @@ function reducer(state, action) {
       updatedState.details.service = action.payload;
 
       return updatedState;
+    case 'CHOSEN_TIME':
+      updatedState = { ...state };
+      updatedState.details.time = action.payload;
+
+      return updatedState;
+    case 'ENTERED_CONTACT_INFO':
+      updatedState = { ...state };
+      updatedState.contactInfo = action.payload;
+
+      return updatedState;
     case 'DESELECTED_CATEGORY':
       updatedState = { ...state };
       updatedState.details.serviceCategory = null;
@@ -45,6 +56,12 @@ function reducer(state, action) {
 
 const App = () => {
   const [order, dispatch] = useReducer(reducer, initialState);
+
+  const [contactInfo, setContactInfo] = useState({
+    name: null,
+    phone: null,
+    email: null
+  });
 
   const [currentStage, setCurrentStage] = useState('serviceCategory');
   const _stager = {
@@ -93,6 +110,32 @@ const App = () => {
     dispatch({ type: 'CHOSEN_SERVICE', payload: id });
   };
 
+  const onTimeChoose = (time) => {
+    dispatch({ type: 'CHOSEN_TIME', payload: time });
+  };
+
+  const onOrderSubmit = () => {
+    dispatch({type: 'ENTERED_CONTACT_INFO', payload: contactInfo});
+    
+    // todo: разобраться, как нормально достучаться до обновленного стейта сразу? чтобы не писать говно ниже
+    const details = getBeautifiedOrderDetails(order.details);
+    const finalOrder = {details: details, contactInfo: {...contactInfo}};
+    console.log(finalOrder)
+
+    const isOrderConfirmed = confirm(
+      `Here's your order:
+      
+      Service: ${details.service}
+      Time: ${details.time}` +
+      
+      `\n\nIs this correct?` + `\nIf not, you can go back and change your order.`
+    );
+
+    if (isOrderConfirmed === false) return;
+
+    alert('Success! Now the order data should be sent to server...');
+  }
+
   const appElement = useRef(null);
   const stageElement = useRef(null);
   const onOutsideClick = (evt) => {
@@ -118,6 +161,9 @@ const App = () => {
         onBackClick={onBackClick}
         onServiceCategoryClick={onServiceCategoryClick}
         onServiceClick={onServiceClick}
+        onTimeChoose={onTimeChoose}
+        setContactInfo={setContactInfo}
+        onOrderSubmit={onOrderSubmit}
       />
     </div>
   );

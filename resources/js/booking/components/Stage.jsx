@@ -1,46 +1,32 @@
-import React, {forwardRef} from 'react';
+import React, {forwardRef, useState} from 'react';
 import StageServiceCategory from './StageServiceCategory';
 import StageService from './StageService';
 import StageContactInfo from './StageContactInfo';
-
-// const Stage = ({order, currentStage, onNextClick, onBackClick, onServiceCategoryClick}) => {
-//   const STAGE = {
-//     SERVICE_CATEGORY: 'serviceCategory',
-//     SERVICE: 'service',
-//     PERSONAL_INFO: 'personalInfo'
-//   };
-//
-//   return (
-//     <div className="stage">
-//       <div className="stage__content">
-//         {currentStage === STAGE.SERVICE_CATEGORY && <StageServiceCategory onServiceCategoryClick={onServiceCategoryClick} />}
-//
-//         {currentStage === STAGE.SERVICE && <StageService category={order.details.serviceCategory} />}
-//
-//         {currentStage === STAGE.PERSONAL_INFO && <StageContactInfo />}
-//       </div>
-//
-//       <div className="stage__buttons">
-//         <button onClick={onBackClick} className="stage-button stage-button-back stage__stage-button-back">
-//           Back
-//         </button>
-//
-//         <button onClick={onNextClick} className="stage-button stage-button-next stage__stage-button-next">
-//           Next
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
+import StageTime from './StageTime';
 
 const Stage = forwardRef((props, ref) => {
   const STAGE = {
     SERVICE_CATEGORY: 'serviceCategory',
     SERVICE: 'service',
-    PERSONAL_INFO: 'personalInfo'
+    TIME: 'time',
+    CONTACT_INFO: 'contactInfo'
   };
 
-  const {order, currentStage, onNextClick, onBackClick, onServiceCategoryClick, onServiceClick} = props;
+  const [areRequiredFieldsFilled, setAreRequiredFieldsFilled] = useState(false);
+  const {
+    order,
+    currentStage,
+    onNextClick,
+    onBackClick,
+    onServiceCategoryClick,
+    onServiceClick,
+    onTimeChoose,
+    setContactInfo,
+    onOrderSubmit
+  } = props;
+  
+  const isStageItemChosen = order.details[currentStage] !== null;
+  const isLastStage = currentStage === STAGE.CONTACT_INFO;
 
   return (
     <div ref={ref} className="stage">
@@ -60,17 +46,39 @@ const Stage = forwardRef((props, ref) => {
           />
         }
 
-        {currentStage === STAGE.PERSONAL_INFO && <StageContactInfo />}
+        {currentStage === STAGE.TIME && <StageTime onTimeChoose={onTimeChoose} />}
+
+        {currentStage === STAGE.CONTACT_INFO &&
+          <StageContactInfo setContactInfo={setContactInfo} setAreRequiredFieldsFilled={setAreRequiredFieldsFilled} />
+        }
       </div>
 
       <div className="stage__buttons">
-        <button onClick={onBackClick} className="stage-button stage-button-back stage__stage-button-back">
-          Back
-        </button>
+        {currentStage !== 'serviceCategory' &&
+          <button onClick={onBackClick} className="stage-button stage-button-back stage__stage-button-back">
+            Back
+          </button>
+        }
 
-        <button onClick={onNextClick} className="stage-button stage-button-next stage__stage-button-next">
-          Next
-        </button>
+        {!isLastStage &&
+          <button
+            onClick={onNextClick}
+            disabled={!isStageItemChosen}
+            className="stage-button stage-button-next stage__stage-button-next"
+          >
+            Next
+          </button>
+        }
+
+        {isLastStage &&
+          <button
+            onClick={onOrderSubmit}
+            disabled={!areRequiredFieldsFilled}
+            className="stage-button stage-button-submit"
+          >
+            Submit
+          </button>
+        }
       </div>
     </div>
   );
