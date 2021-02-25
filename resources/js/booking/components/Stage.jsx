@@ -15,6 +15,7 @@ const Stage = forwardRef((props, ref) => {
   const [areRequiredFieldsFilled, setAreRequiredFieldsFilled] = useState(false);
   const {
     order,
+    contactInfo,
     currentStage,
     onNextClick,
     onBackClick,
@@ -49,7 +50,11 @@ const Stage = forwardRef((props, ref) => {
         {currentStage === STAGE.TIME && <StageTime onTimeChoose={onTimeChoose} />}
 
         {currentStage === STAGE.CONTACT_INFO &&
-          <StageContactInfo setContactInfo={setContactInfo} setAreRequiredFieldsFilled={setAreRequiredFieldsFilled} />
+          <StageContactInfo
+            contactInfo={contactInfo}
+            setContactInfo={setContactInfo}
+            setAreRequiredFieldsFilled={setAreRequiredFieldsFilled}
+          />
         }
       </div>
 

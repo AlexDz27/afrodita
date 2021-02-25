@@ -10,9 +10,9 @@ const initialState = {
     time: null
   },
   contactInfo: {
-    name: null,
-    phone: null,
-    email: null
+    name: '',
+    phone: '',
+    email: ''
   }
 };
 
@@ -58,9 +58,9 @@ const App = () => {
   const [order, dispatch] = useReducer(reducer, initialState);
 
   const [contactInfo, setContactInfo] = useState({
-    name: null,
-    phone: null,
-    email: null
+    name: '',
+    phone: '',
+    email: ''
   });
 
   const [currentStage, setCurrentStage] = useState('serviceCategory');
@@ -157,6 +157,7 @@ const App = () => {
         ref={stageElement}
         currentStage={currentStage}
         order={order}
+        contactInfo={contactInfo}
         onNextClick={onNextClick}
         onBackClick={onBackClick}
         onServiceCategoryClick={onServiceCategoryClick}
