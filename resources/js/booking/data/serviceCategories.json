@@ -1,0 +1,32 @@
+[
+  {
+    "id": "face_care",
+    "name": "Face care",
+    "picture_url": "/img/booking/service-categories/face-care.jpg"
+  },
+  {
+    "id": "hair_removal",
+    "name": "Hair removal",
+    "picture_url": "/img/booking/service-categories/hair-removal.jpg"
+  },
+  {
+    "id": "massage",
+    "name": "Massage",
+    "picture_url": "/img/booking/service-categories/massage.jpg"
+  },
+  {
+    "id": "manicure",
+    "name": "Manicure",
+    "picture_url": "/img/booking/service-categories/manicure.jpg"
+  },
+  {
+    "id": "pedicure",
+    "name": "Pedicure",
+    "picture_url": "/img/booking/service-categories/pedicure.jpg"
+  },
+  {
+    "id": "brows",
+    "name": "Brows",
+    "picture_url": "/img/booking/service-categories/brows.jpg"
+  }
+]
