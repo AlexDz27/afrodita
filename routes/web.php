@@ -40,4 +40,3 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
 
 // Booking
 Route::get('/booking', [BookingController::class, 'index']);
-Route::post('/booking/submit', [BookingController::class, 'submit']);

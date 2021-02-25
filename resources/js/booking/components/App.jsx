@@ -114,13 +114,13 @@ const App = () => {
     dispatch({ type: 'CHOSEN_TIME', payload: time });
   };
 
-  const onOrderSubmit = () => {
+  const onOrderSubmit = async () => {
     dispatch({type: 'ENTERED_CONTACT_INFO', payload: contactInfo});
     
     // todo: разобраться, как нормально достучаться до обновленного стейта сразу? чтобы не писать говно ниже
+    // а походу никак...
     const details = getBeautifiedOrderDetails(order.details);
     const finalOrder = {details: details, contactInfo: {...contactInfo}};
-    console.log(finalOrder)
 
     const isOrderConfirmed = confirm(
       `Here's your order:
@@ -135,6 +135,17 @@ const App = () => {
     if (isOrderConfirmed === false) return;
 
     alert('Success! Now the order data should be sent to server...');
+
+    const response = await fetch('http://aphrodite.local/api/booking-submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(finalOrder)
+    });
+    const data = await response.text();
+
+    console.log(data);
   }
 
   const appElement = useRef(null);

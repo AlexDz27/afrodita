@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Utils\Formatter;
 
 class BookingController extends Controller
 {
@@ -11,8 +13,20 @@ class BookingController extends Controller
     return view('booking.index');
   }
 
-  public function submit()
+  public function submit(Request $request)
   {
-    dd($_POST);
+    // Create - Save - Notify on success or failure
+    $payloadOrder = $request->post();
+
+    $order = new Order();
+    // todo: maybe find a way to do $order->serviceCategory
+    $order->service_category = $payloadOrder['details']['serviceCategory'];
+    $order->service = $payloadOrder['details']['service'];
+    $order->time = Formatter::formatOrderTimeForDb($payloadOrder['details']['time']);
+    $order->name = $payloadOrder['contactInfo']['name'];
+    $order->phone = $payloadOrder['contactInfo']['phone'];
+    $order->email = $payloadOrder['contactInfo']['email'];
+
+    $order->save();
   }
 }
