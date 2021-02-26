@@ -7,6 +7,7 @@ const AppContent = forwardRef((props, ref) => {
     currentStage,
     order,
     contactInfo,
+    loadingOnSubmit,
     onNextClick,
     onBackClick,
     onServiceCategoryClick,
@@ -26,6 +27,7 @@ const AppContent = forwardRef((props, ref) => {
         // currentStage={'contactInfo'}
         order={order}
         contactInfo={contactInfo}
+        loadingOnSubmit={loadingOnSubmit}
         onNextClick={onNextClick}
         onBackClick={onBackClick}
         onServiceCategoryClick={onServiceCategoryClick}

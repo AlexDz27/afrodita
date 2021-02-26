@@ -15,8 +15,9 @@ const Stage = forwardRef((props, ref) => {
   const [areRequiredFieldsFilled, setAreRequiredFieldsFilled] = useState(false);
   const {
     order,
-    contactInfo,
     currentStage,
+    contactInfo,
+    loadingOnSubmit,
     onNextClick,
     onBackClick,
     onServiceCategoryClick,
@@ -52,6 +53,7 @@ const Stage = forwardRef((props, ref) => {
         {currentStage === STAGE.CONTACT_INFO &&
           <StageContactInfo
             contactInfo={contactInfo}
+            loadingOnSubmit={loadingOnSubmit}
             setContactInfo={setContactInfo}
             setAreRequiredFieldsFilled={setAreRequiredFieldsFilled}
           />
@@ -60,7 +62,11 @@ const Stage = forwardRef((props, ref) => {
 
       <div className="stage__buttons">
         {currentStage !== 'serviceCategory' &&
-          <button onClick={onBackClick} className="stage-button stage-button-back stage__stage-button-back">
+          <button
+            onClick={onBackClick}
+            className="stage-button stage-button-back stage__stage-button-back"
+            disabled={loadingOnSubmit}
+          >
             Back
           </button>
         }
@@ -78,7 +84,7 @@ const Stage = forwardRef((props, ref) => {
         {isLastStage &&
           <button
             onClick={onOrderSubmit}
-            disabled={!areRequiredFieldsFilled}
+            disabled={!areRequiredFieldsFilled || loadingOnSubmit}
             className="stage-button stage-button-submit"
           >
             Submit

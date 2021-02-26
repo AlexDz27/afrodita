@@ -15,7 +15,8 @@ class BookingController extends Controller
 
   public function submit(Request $request)
   {
-    // Create - Save - Notify on success or failure
+    sleep(1);
+
     $payloadOrder = $request->post();
 
     $order = new Order();
@@ -27,6 +28,11 @@ class BookingController extends Controller
     $order->phone = $payloadOrder['contactInfo']['phone'];
     $order->email = $payloadOrder['contactInfo']['email'];
 
-    $order->save();
+    $result = $order->save();
+
+    return response()->json([
+      'success' => $result,
+      'message' => $result ? 'Order submitted successfully' : 'Problem submitting reminder'
+    ]);
   }
 }

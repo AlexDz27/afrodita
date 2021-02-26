@@ -1,4 +1,4 @@
-import React, { useState, useReducer, useRef } from 'react';
+import React, { useState, useReducer, useRef, useEffect } from 'react';
 import Offer from './Offer';
 import AppContent from './AppContent';
 import { getBeautifiedOrderDetails } from '../utils/beatifyOrderDetails';
@@ -44,6 +44,22 @@ function reducer(state, action) {
       updatedState.contactInfo = action.payload;
 
       return updatedState;
+    case 'SUBMITTED_AND_GONE_TO_FIRST_STAGE':
+      // TODO: clean up this mess... Why initial state isn't working here?
+      updatedState = {
+        details: {
+          serviceCategory: null,
+          service: null,
+          time: null
+        },
+        contactInfo: {
+          name: '',
+          phone: '',
+          email: ''
+        }
+      };
+
+      return updatedState;
     case 'DESELECTED_CATEGORY':
       updatedState = { ...state };
       updatedState.details.serviceCategory = null;
@@ -62,6 +78,15 @@ const App = () => {
     phone: '',
     email: ''
   });
+
+  const [loadingOnSubmit, setLoadingOnSubmit] = useState(false);
+  useEffect(() => {
+    if (loadingOnSubmit === true) {
+      document.body.style.cursor = 'wait';
+    } else {
+      document.body.style.cursor = null;
+    }
+  }, [loadingOnSubmit]);
 
   const [currentStage, setCurrentStage] = useState('serviceCategory');
   const _stager = {
@@ -92,6 +117,16 @@ const App = () => {
       this.currentStage = nextStage;
 
       setCurrentStage(this.currentStage);
+    },
+
+    goToFirstStage() {
+      const firstIdx = 0;
+      const firstStage = this.stages[firstIdx];
+
+      this._currentIdx = firstIdx;
+      this.currentStage = firstStage;
+
+      setCurrentStage(this.currentStage);
     }
   };
   const stager = useRef(_stager).current;
@@ -115,12 +150,12 @@ const App = () => {
   };
 
   const onOrderSubmit = async () => {
-    dispatch({type: 'ENTERED_CONTACT_INFO', payload: contactInfo});
-    
+    dispatch({ type: 'ENTERED_CONTACT_INFO', payload: contactInfo });
+
     // todo: разобраться, как нормально достучаться до обновленного стейта сразу? чтобы не писать говно ниже
     // а походу никак...
     const details = getBeautifiedOrderDetails(order.details);
-    const finalOrder = {details: details, contactInfo: {...contactInfo}};
+    const finalOrder = { details: details, contactInfo: { ...contactInfo } };
 
     const isOrderConfirmed = confirm(
       `Here's your order:
@@ -128,13 +163,13 @@ const App = () => {
       Category: ${details.serviceCategory}
       Service: ${details.service}
       Time: ${details.time}` +
-      
+
       `\n\nIs this correct?` + `\nIf not, you can go back and change your order.`
     );
 
     if (isOrderConfirmed === false) return;
 
-    alert('Success! Now the order data should be sent to server...');
+    setLoadingOnSubmit(true);
 
     const response = await fetch('http://aphrodite.local/api/booking-submit', {
       method: 'POST',
@@ -143,10 +178,21 @@ const App = () => {
       },
       body: JSON.stringify(finalOrder)
     });
-    const data = await response.text();
+    let result = await response.json();
 
-    console.log(data);
-  }
+    setLoadingOnSubmit(false);
+
+    if (result.success === true) {
+      alert(`Your order has been submitted successfully. We'll contact you shortly.`);
+
+      dispatch({ type: 'SUBMITTED_AND_GONE_TO_FIRST_STAGE' });
+      stager.goToFirstStage();
+    } else {
+      alert(`Oh-oh, an error occurred while submitting your order. Please, try again later`);
+    }
+
+    // TODO: Logging on errors / successes
+  };
 
   const appElement = useRef(null);
   const stageElement = useRef(null);
@@ -170,6 +216,7 @@ const App = () => {
         currentStage={currentStage}
         order={order}
         contactInfo={contactInfo}
+        loadingOnSubmit={loadingOnSubmit}
         onNextClick={onNextClick}
         onBackClick={onBackClick}
         onServiceCategoryClick={onServiceCategoryClick}
