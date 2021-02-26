@@ -10724,6 +10724,11 @@ textarea.form-control-lg {
 .stage-button-back:hover {
   background-color: #660a95;
 }
+.stage-button-back:disabled {
+  cursor: not-allowed;
+  background-color: rgba(158, 158, 158, 0.86);
+  opacity: 0.5;
+}
 
 .stage__stage-button-back {
   margin-left: 38px;
