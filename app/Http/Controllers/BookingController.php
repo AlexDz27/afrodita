@@ -15,8 +15,6 @@ class BookingController extends Controller
 
   public function submit(Request $request)
   {
-    sleep(1);
-
     $payloadOrder = $request->post();
 
     $order = new Order();

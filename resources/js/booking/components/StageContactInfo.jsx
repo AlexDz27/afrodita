@@ -9,8 +9,6 @@ const StageContactInfo = ({ setAreRequiredFieldsFilled, setContactInfo, contactI
   const formRef = useRef(null);
 
   const onChange = () => {
-    console.log('got onChange')
-
     setContactInfo({
       name: nameInput.current.value,
       phone: phoneInput.current.value,
@@ -21,12 +19,6 @@ const StageContactInfo = ({ setAreRequiredFieldsFilled, setContactInfo, contactI
       setAreRequiredFieldsFilled(true);
     } else {
       setAreRequiredFieldsFilled(false);
-
-      // setContactInfo({
-      //   name: null,
-      //   phone: null,
-      //   email: null
-      // });
     }
   };
   
