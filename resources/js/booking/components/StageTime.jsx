@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {isWeekday} from '../utils/isWeekday';
 import DatePicker from 'react-datepicker';
 
-import "react-datepicker/dist/react-datepicker.css";
+import 'react-datepicker/dist/react-datepicker.css';
+import '../../../scss/booking/blocks/datepicker.scss';
 import { formatSelectedTime } from '../utils/formatSelectedTime';
 
 const StageTime = ({onTimeChoose}) => {
@@ -39,6 +40,8 @@ const StageTime = ({onTimeChoose}) => {
         minTime={_now.setHours(7, 59)}
         maxTime={_now.setHours(18, 59)}
         filterDate={isWeekday}
+        className="datepicker"
+        calendarClassName="datepicker__calendar"
       />
     </div>
   );
