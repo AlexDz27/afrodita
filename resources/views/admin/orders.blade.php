@@ -32,22 +32,14 @@
     </thead>
     <tbody>
     @foreach ($orders as $order)
-      @php
-        // TODO: use Carbon;
-        $orderTime = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $order->time);
-        $currentTime = \Carbon\Carbon::now();
-
-        $hasOrderTimePassed = $currentTime > $orderTime;
-      @endphp
-
-      <tr class="{{ $hasOrderTimePassed ? 'table-warning text-muted' : '' }}">
+      <tr class="{{ $order->is_past ? 'table-warning text-muted' : '' }}">
         <th scope="row">{{ $order->id }}</th>
-        <td>{{ $order->time }}</td>
+        <td>{{ $order->formatted_time }}</td>
         <td>{{ $order->service_category }}</td>
         <td>{{ $order->service }}</td>
         <td>{{ $order->name }}</td>
         <td>{{ $order->phone }}</td>
-        <td>{{ $order->email }}</td>
+        <td>{{ $order->tst }}</td>
       </tr>
     @endforeach
     </tbody>

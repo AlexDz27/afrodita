@@ -56,7 +56,7 @@ class AdminController extends Controller
 
     $time = $request->get('time');
 
-    $ordersQuery = DB::table('orders')->orderBy('time', 'desc');
+    $ordersQuery = Order::orderBy('time', 'desc');
     if ($time === TIMES['PAST']) {
       $ordersQuery = $ordersQuery->whereDate('time', '<', Carbon::now());
     }
