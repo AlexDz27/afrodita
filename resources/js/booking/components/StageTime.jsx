@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../../scss/booking/blocks/datepicker.scss';
-import { formatSelectedTime } from '../utils/formatSelectedTime';
+import { formatSelectedTime } from '../../utils/formatSelectedTime';
 
 const StageTime = ({onTimeChoose}) => {
   const _now = new Date();

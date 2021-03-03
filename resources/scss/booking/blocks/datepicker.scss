@@ -1,3 +1,4 @@
+// Styles for datepicker in booking page
 .datepicker {
   border: 1px solid gray;
   border-radius: 20px;
@@ -46,4 +47,12 @@
 
 .datepicker__calendar .react-datepicker__header {
   background-color: #fff;
+}
+
+// Styles for datepicker in admin pages. Specifically, on "Orders" page. These extend styles above
+.datepicker-admin {
+  display: none;
+}
+.datepicker-admin__calendar {
+  width: auto;
 }

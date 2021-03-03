@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Exception;
 
 class AdminController extends Controller
 {
@@ -39,12 +42,43 @@ class AdminController extends Controller
     ]);
   }
 
-  public function orders()
+  public function orders(Request $request)
   {
-    $orders = Order::orderBy('id', 'DESC')->get();
+    define('TIMES', [
+      'NONE' => null,
+      'PAST' => 'past',
+      'TODAY' => 'today',
+      'TOMORROW' => 'tomorrow',
+      'DAY_AFTER_TOMORROW' => 'day-after-tomorrow',
+      'SPECIFIC_DATE' => 'specific-date',
+      'ALL_TIME' => 'all-time',
+    ]);
+
+    $time = $request->get('time');
+
+    $ordersQuery = DB::table('orders')->orderBy('time', 'desc');
+    if ($time === TIMES['PAST']) {
+      $ordersQuery = $ordersQuery->whereDate('time', '<', Carbon::now());
+    }
+    if ($time === TIMES['TODAY']) {
+      $ordersQuery = $ordersQuery->whereDate('time', '=', Carbon::now());
+    }
+    if ($time === TIMES['TOMORROW']) {
+      $ordersQuery = $ordersQuery->whereDate('time', '=', Carbon::tomorrow());
+    }
+    if ($time === TIMES['DAY_AFTER_TOMORROW']) {
+      $ordersQuery = $ordersQuery->whereDate('time', '=', Carbon::now()->addDays(2));
+    }
+    if ($time === TIMES['SPECIFIC_DATE']) {
+      $date = $request->get('date');
+      $ordersQuery = $ordersQuery->whereDate('time', '=', Carbon::createFromFormat('Y-m-d', $date));
+    }
+
+    $orders = $ordersQuery->get();
 
     return view('admin.orders', [
       'breadCrumbTitle' => 'Orders',
+      'chosenTime' => $time,
       'orders' => $orders
     ]);
   }

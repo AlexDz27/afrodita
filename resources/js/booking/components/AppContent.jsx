@@ -23,8 +23,8 @@ const AppContent = forwardRef((props, ref) => {
 
       <Stage
         ref={ref}
-        // currentStage={currentStage}
-        currentStage={'time'}
+        currentStage={currentStage}
+        // currentStage={'time'}
         order={order}
         contactInfo={contactInfo}
         loadingOnSubmit={loadingOnSubmit}
