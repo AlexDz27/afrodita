@@ -74,7 +74,7 @@ class AdminController extends Controller
       $ordersQuery = $ordersQuery->whereDate('time', '=', Carbon::createFromFormat('Y-m-d', $date));
     }
 
-    $orders = $ordersQuery->get();
+    $orders = $ordersQuery->paginate(10)->withQueryString();
 
     return view('admin.orders', [
       'breadCrumbTitle' => 'Orders',
