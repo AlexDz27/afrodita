@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { ShowPhoneButton } from './components/ShowPhoneButton/ShowPhoneButton';
 import { AddAttributesButton } from './components/AddAttributesButton/AddAttributesButton';
 import { SearchCatalogInput } from './components/SearchCatalogInput/SearchCatalogInput';
+import AddToCartButton from './components/AddToCartButton';
 // TODO: split into "admin.js"
 import SpecificDatePicker from './components/SpecificDatePicker';
 
@@ -21,6 +22,11 @@ if (document.getElementById('add-attributes-button-container')) {
   ReactDOM.render(<AddAttributesButton/>, document.getElementById('add-attributes-button-container'));
 }
 
+// On admin page, on Bookings page. Renders specific date button and picker
 if (document.getElementById('specific-date-link-container')) {
   ReactDOM.render(<SpecificDatePicker/>, document.getElementById('specific-date-link-container'));
+}
+
+if (document.getElementById('add-to-cart-btn-container')) {
+  ReactDOM.render(<AddToCartButton/>, document.getElementById('add-to-cart-btn-container'));
 }
