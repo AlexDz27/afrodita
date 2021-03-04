@@ -8,7 +8,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
 
-                @if ($route->named('catalog*'))
+                @if ($route->named('catalog.*') && !$route->named('catalog.catalog'))
                     <li class="breadcrumb-item"><a href="{{ route('catalog.catalog') }}">Catalog</a></li>
                 @endif
 
