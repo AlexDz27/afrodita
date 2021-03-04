@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-  <h1>Orders</h1>
+  <h1>Bookings</h1>
 
   <div>
     <a class="btn {{ $chosenTime === 'past' ? 'btn-primary' : 'btn-outline-primary' }}" href="?time=past">Past</a>
@@ -31,20 +31,20 @@
     </tr>
     </thead>
     <tbody>
-    @foreach ($orders as $order)
-      <tr class="{{ $order->is_past ? 'table-warning text-muted' : '' }}">
-        <th scope="row">{{ $order->id }}</th>
-        <td>{{ $order->formatted_time }}</td>
-        <td>{{ $order->service_category }}</td>
-        <td>{{ $order->service }}</td>
-        <td>{{ $order->name }}</td>
-        <td>{{ $order->phone }}</td>
-        <td>{{ $order->tst }}</td>
+    @foreach ($bookings as $booking)
+      <tr class="{{ $booking->is_past ? 'table-warning text-muted' : '' }}">
+        <th scope="row">{{ $booking->id }}</th>
+        <td>{{ $booking->formatted_time }}</td>
+        <td>{{ $booking->service_category }}</td>
+        <td>{{ $booking->service }}</td>
+        <td>{{ $booking->name }}</td>
+        <td>{{ $booking->phone }}</td>
+        <td>{{ $booking->email }}</td>
       </tr>
     @endforeach
     </tbody>
 
   </table>
 
-  {{ $orders->links() }}
+  {{ $bookings->links() }}
 @endsection

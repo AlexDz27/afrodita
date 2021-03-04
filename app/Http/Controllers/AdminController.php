@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+use App\Models\Booking;
 use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Exception;
 
 class AdminController extends Controller
 {
@@ -42,7 +40,7 @@ class AdminController extends Controller
     ]);
   }
 
-  public function orders(Request $request)
+  public function bookings(Request $request)
   {
     define('TIMES', [
       'NONE' => null,
@@ -56,30 +54,30 @@ class AdminController extends Controller
 
     $time = $request->get('time');
 
-    $ordersQuery = Order::orderBy('time', 'desc');
+    $bookingsQuery = Booking::orderBy('time', 'desc');
     if ($time === TIMES['PAST']) {
-      $ordersQuery = $ordersQuery->whereDate('time', '<', Carbon::now());
+      $bookingsQuery->whereDate('time', '<', Carbon::now());
     }
     if ($time === TIMES['TODAY']) {
-      $ordersQuery = $ordersQuery->whereDate('time', '=', Carbon::now());
+      $bookingsQuery->whereDate('time', '=', Carbon::now());
     }
     if ($time === TIMES['TOMORROW']) {
-      $ordersQuery = $ordersQuery->whereDate('time', '=', Carbon::tomorrow());
+      $bookingsQuery->whereDate('time', '=', Carbon::tomorrow());
     }
     if ($time === TIMES['DAY_AFTER_TOMORROW']) {
-      $ordersQuery = $ordersQuery->whereDate('time', '=', Carbon::now()->addDays(2));
+      $bookingsQuery->whereDate('time', '=', Carbon::now()->addDays(2));
     }
     if ($time === TIMES['SPECIFIC_DATE']) {
       $date = $request->get('date');
-      $ordersQuery = $ordersQuery->whereDate('time', '=', Carbon::createFromFormat('Y-m-d', $date));
+      $bookingsQuery->whereDate('time', '=', Carbon::createFromFormat('Y-m-d', $date));
     }
 
-    $orders = $ordersQuery->paginate(10)->withQueryString();
+    $bookings = $bookingsQuery->paginate(10)->withQueryString();
 
-    return view('admin.orders', [
-      'breadCrumbTitle' => 'Orders',
+    return view('admin.bookings', [
+      'breadCrumbTitle' => 'Bookings',
       'chosenTime' => $time,
-      'orders' => $orders
+      'bookings' => $bookings
     ]);
   }
 }

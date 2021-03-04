@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Database\Factories\OrderFactory;
 use Carbon\Carbon;
 
-class Order extends Model
+class Booking extends Model
 {
   // TODO: add @var things for all models
   use HasFactory;

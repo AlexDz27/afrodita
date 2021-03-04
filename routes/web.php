@@ -37,7 +37,7 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::get('/products/edit/{id}', [AdminController::class, 'editProduct'])->name('editProduct');
     Route::post('/products/edit/{id}', [AdminController::class, 'editProduct']);
 
-    Route::get('/orders', [AdminController::class, 'orders']);
+    Route::get('/bookings', [AdminController::class, 'bookings']);
 });
 
 // Booking
