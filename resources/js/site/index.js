@@ -5,6 +5,7 @@ import { ShowPhoneButton } from './components/ShowPhoneButton/ShowPhoneButton';
 import { SearchCatalogInput } from './components/SearchCatalogInput/SearchCatalogInput';
 import CartItemsCount from './components/CartItemsCount';
 import AddToCartButton from './components/AddToCartButton';
+import Cart from './components/Cart';
 import { AddAttributesButton } from './components/AddAttributesButton/AddAttributesButton';
 import './modules/localStorageEvents';
 // TODO: split into "admin.js"
@@ -20,13 +21,18 @@ const searchContainer = document.getElementById('catalog-search-container');
 ReactDOM.render(<SearchCatalogInput/>, searchContainer);
 
 // On all pages, in navbar. Renders count
-if (document.getElementById('cart-items-count-container')) {
-  ReactDOM.render(<CartItemsCount/>, document.getElementById('cart-items-count-container'));
+if (document.getElementById('cart-nav__items-count-container')) {
+  ReactDOM.render(<CartItemsCount/>, document.getElementById('cart-nav__items-count-container'));
 }
 
 // On catalog > products page. Renders 'Add to cart' button with delete button
 if (document.getElementById('add-to-cart-btn-container')) {
   ReactDOM.render(<AddToCartButton/>, document.getElementById('add-to-cart-btn-container'));
+}
+
+// On cart page. Renders cart component
+if (document.getElementById('cart-container')) {
+  ReactDOM.render(<Cart/>, document.getElementById('cart-container'));
 }
 
 // On admin page > Edit service/product. Renders add attributes button

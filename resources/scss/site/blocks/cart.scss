@@ -1,0 +1,37 @@
+.cart-nav__link {
+  text-decoration: none;
+}
+.cart-nav__link svg {
+  width: 30px;
+  height: 30px;
+  fill: white;
+}
+.cart-nav__link svg:hover {
+  fill: $cyan;
+}
+
+.cart-nav {
+  position: relative;
+}
+.cart-nav__items-count {
+  position: absolute;
+  right: -17px;
+}
+
+.cart-container {
+  max-width: 600px;
+}
+
+.cart__price {
+  line-height: inherit;
+  font-size: 20px;
+}
+
+.cart__qty {
+  display: flex;
+}
+.cart__qty-input {
+  width: 35px;
+  text-align: center;
+  border: none;
+}

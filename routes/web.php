@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CatalogSearchController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CartController;
 
 // Pages
 Route::view('/', 'pages.home')->name('home');
@@ -26,6 +27,9 @@ Route::prefix('catalog')->name('catalog.')->group(function () {
         Route::get('/{id}', [ProductController::class, 'show'])->name('productsShow');
     });
 });
+
+// Cart
+Route::get('/cart', [CartController::class, 'show'])->name('cart');
 
 // Search
 Route::get('/search', [CatalogSearchController::class, 'show']);

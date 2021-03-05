@@ -11,10 +11,22 @@ const CartItemsCount = () => {
     });
   }, []);
 
+  useEffect(() => {
+    // TODO: Bad. Need a separate component like <CartNav /> that would home 1)link and 2)count
+    const link = document.querySelector('.cart-nav__link');
+    // Link becomes active if user chooses an item
+    if (count > 0) {
+      link.style.pointerEvents = 'all';
+    } else {
+      // If user hasn't yet chosen an item, the link is inactive and displays as a static background image
+      link.style.pointerEvents =  'none';
+    }
+  }, [count]);
+
   if (count === 0) return null;
 
   return (
-    <span className="cart__items-count badge rounded-pill bg-danger">{count}</span>
+    <span className="cart-nav__items-count badge rounded-pill bg-danger">{count}</span>
   );
 }
 

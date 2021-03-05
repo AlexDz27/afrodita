@@ -30,10 +30,12 @@ const AddToCartButton = () => {
 
     const id = currentItemId;
     const name = document.querySelector('#product-name').textContent;
+    let description = document.querySelector('#product-description').textContent;
+    description = description.split(' ').slice(0, 18).join(' ') + '...';
     const price = document.querySelector('h2').textContent.replace(/ BYN/g, '');
     const photo = document.querySelector('img')?.src;
 
-    const productData = { id, name, price, photo };
+    const productData = { id, name, description, price, photo };
 
     // TODO: mb unnecessary because either way the button should be disabled
     const cartItemExists = cartItems.find(item => item.id === productData.id);

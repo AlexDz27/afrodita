@@ -13,7 +13,7 @@
   </h1>
   <h2>{{ $product->price }} BYN</h2>
 
-  <p>{{ $product->description }}</p>
+  <p id="product-description">{{ $product->description }}</p>
 
   @if ($product->attributes)
     <h2>Attributes:</h2>
