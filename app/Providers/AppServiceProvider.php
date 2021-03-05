@@ -3,8 +3,11 @@
 namespace App\Providers;
 
 use App\Services\CatalogSearchService;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,8 +28,12 @@ class AppServiceProvider extends ServiceProvider
    *
    * @return void
    */
-  public function boot()
+  public function boot(Request $request)
   {
     Paginator::useBootstrap();
+
+    Blade::if('app', function () use ($request) {
+      return $request->is('admin*') === false;
+    });
   }
 }

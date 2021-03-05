@@ -1,3 +1,3 @@
 window.events = {
-  CART_ITEM_INSERTED: new Event('CART_ITEM_INSERTED'),
+  CART_ITEMS_UPDATED: new Event('CART_ITEMS_UPDATED'),
 };

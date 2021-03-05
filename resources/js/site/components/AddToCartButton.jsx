@@ -4,59 +4,72 @@ import { Tooltip } from 'bootstrap';
 // TODO: create function (class?) for handling localStorage operations
 
 const AddToCartButton = () => {
-  let closeBtnRef = useRef(null);
-
   const [isAdded, setIsAdded] = useState(false);
+  const [firstTimeAdding, setFirstTimeAdding] = useState(true);
+
+  const closeBtnRef = useRef(null);
+
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) ?? [];
+  const currentItemId = document.querySelector('#product-name').dataset.id;
+
+  const itemIsAlreadyAdded = Boolean(cartItems.find(item => item.id === currentItemId));
+
+  useEffect(() => {
+    // Set button to 'Added to cart!' if user already chose item
+    if (itemIsAlreadyAdded) {
+      setIsAdded(true);
+      setFirstTimeAdding(false);
+    }
+
+    // Initialize tooltip
+    window.tooltip = new Tooltip(closeBtnRef.current);
+  }, []);
 
   const addToCart = () => {
     setIsAdded(true);
 
-    const id = document.querySelector('#product-name').dataset.id;
+    const id = currentItemId;
     const name = document.querySelector('#product-name').textContent;
     const price = document.querySelector('h2').textContent.replace(/ BYN/g, '');
-    const photo = document.querySelector('img').src;
+    const photo = document.querySelector('img')?.src;
 
     const productData = { id, name, price, photo };
 
-    console.log(productData);
-
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) ?? [];
-
     // TODO: mb unnecessary because either way the button should be disabled
-    const cartItemExists = cartItems.find((item) => item.id === productData.id);
+    const cartItemExists = cartItems.find(item => item.id === productData.id);
     if (cartItemExists) return;
 
     const updatedCartItems = [...cartItems, productData];
     localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
-    dispatchEvent(window.events.CART_ITEM_INSERTED);
+    dispatchEvent(window.events.CART_ITEMS_UPDATED);
   };
 
   const deleteFromCart = () => {
     setIsAdded(false);
 
-    const cartItems = JSON.parse(localStorage.getItem('cartItems'));
     // TODO: id - through props via data-attributes on container
-    const id = document.querySelector('#product-name').dataset.id;
-    const updatedCartItems = cartItems.filter((item) => item.id !== id);
+    const updatedCartItems = cartItems.filter(item => item.id !== currentItemId);
 
     localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+    dispatchEvent(window.events.CART_ITEMS_UPDATED);
   };
-
-  useEffect(() => {
-    window.tooltip = new Tooltip(closeBtnRef.current);
-  }, []);
 
   // When clicked on 'Add to cart', show tooltip for 2 seconds and then hide it
   useEffect(() => {
     if (isAdded === false) return;
 
-    window.tooltip.show();
-    const timer = setTimeout(() => {
-      window.tooltip.hide();
-    }, 2000);
-    closeBtnRef.current.addEventListener('mouseenter', () => {
-      clearTimeout(timer);
-    });
+    // Show tooltip to user first time they add item to cart
+    if (firstTimeAdding) {
+      window.tooltip.show();
+      const timer = setTimeout(() => {
+        window.tooltip.hide();
+      }, 2000);
+      closeBtnRef.current.addEventListener('mouseenter', () => {
+        clearTimeout(timer);
+      });
+
+      setFirstTimeAdding(false);
+    }
   }, [isAdded]);
 
   return (

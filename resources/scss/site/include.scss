@@ -26,3 +26,11 @@ body {
 .cart-link svg:hover {
     fill: $cyan;
 }
+
+.cart {
+    position: relative;
+}
+.cart__items-count {
+    position: absolute;
+    right: -17px;
+}

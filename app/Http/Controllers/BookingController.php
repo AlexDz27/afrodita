@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Utils\Formatter;
 
@@ -17,16 +17,16 @@ class BookingController extends Controller
   {
     $payloadOrder = $request->post();
 
-    $order = new Order();
+    $booking = new Booking();
     // todo: maybe find a way to do $order->serviceCategory
-    $order->service_category = $payloadOrder['details']['serviceCategory'];
-    $order->service = $payloadOrder['details']['service'];
-    $order->time = Formatter::formatOrderTimeForDb($payloadOrder['details']['time']);
-    $order->name = $payloadOrder['contactInfo']['name'];
-    $order->phone = $payloadOrder['contactInfo']['phone'];
-    $order->email = $payloadOrder['contactInfo']['email'];
+    $booking->service_category = $payloadOrder['details']['serviceCategory'];
+    $booking->service = $payloadOrder['details']['service'];
+    $booking->time = Formatter::formatOrderTimeForDb($payloadOrder['details']['time']);
+    $booking->name = $payloadOrder['contactInfo']['name'];
+    $booking->phone = $payloadOrder['contactInfo']['phone'];
+    $booking->email = $payloadOrder['contactInfo']['email'];
 
-    $result = $order->save();
+    $result = $booking->save();
 
     return response()->json([
       'success' => $result,
