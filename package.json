@@ -31,6 +31,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.13.7",
+        "@popperjs/core": "^2.9.0",
         "bootstrap": "^5.0.0-beta1",
         "react": "^17.0.1",
         "react-datepicker": "^3.6.0",

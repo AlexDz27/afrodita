@@ -30,7 +30,9 @@ $action = action([CatalogSearchController::class, 'show']);
                         <path d="m76.051 52.574h-26.187c-0.996 0-1.804-0.808-1.804-1.804 0-0.997 0.808-1.804 1.804-1.804h26.188c0.997 0 1.804 0.808 1.804 1.804-1e-3 0.996-0.808 1.804-1.805 1.804z"/>
                     </svg>
                 </a>
-                <span class="badge rounded-pill bg-danger">1</span>
+                <span id="cart-items-count-container">
+                    {{-- <CartItemsCount /> in /resources/js/components/CartItemsCount --}}
+                </span>
             </div>
 
             <div id="show-phone-button-container" data-phone="{{ config('admin.phone') }}">
