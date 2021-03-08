@@ -10748,6 +10748,7 @@ body {
 }
 .cart-page__make-order-btn:disabled {
   cursor: not-allowed;
+  background-color: rgba(158, 158, 158, 0.86);
 }
 @charset "UTF-8";
 .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle, .react-datepicker-popper[data-placement^=top] .react-datepicker__triangle, .react-datepicker__year-read-view--down-arrow,
