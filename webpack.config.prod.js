@@ -22,9 +22,9 @@ module.exports = (env) => {
       new MiniCssExtractPlugin({
         filename: workingOnBooking ? 'css/booking.css' : 'css/style.css'
       }),
-      new PurgeCSSPlugin({
-        paths: glob.sync([PURGE_PATHS.resources], {nodir: true})
-      })
+      // new PurgeCSSPlugin({
+      //   paths: glob.sync([PURGE_PATHS.resources], {nodir: true})
+      // })
     ],
     module: {
       rules: [
