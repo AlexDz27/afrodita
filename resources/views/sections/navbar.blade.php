@@ -20,9 +20,13 @@ $action = action([CatalogSearchController::class, 'show']);
                 </li>
             </ul>
 
-            {{-- Showing cart only in app, not in admin panel --}}
+            {{-- Showing book service button, cart section and our phone only in app, not in admin panel --}}
             @app
-                <div class="me-4 cart-nav">
+                <div>
+                    <a class="btn btn-info" href="{{ route('booking') }}" target="_blank" style="width: 170px; margin-right: 31px;">Book a service</a>
+                </div>
+
+                <div class="me-4 cart-nav" style="margin-right: 2.6rem !important;">
                     <a class="cart-nav__link" href="{{ route('cart') }}">
                         <svg enable-background="new 0 0 97.623 97.623" version="1.1" viewBox="0 0 97.623 97.623" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
                             <path d="m78.617 65.562h-34.074c-4.919 0-10.185-3.585-11.987-8.163l-13.77-34.953c-0.727-1.846-3.289-3.59-5.273-3.59h-9.904c-1.993 1e-3 -3.609-1.615-3.609-3.608s1.616-3.609 3.609-3.609h9.905c4.92 0 10.185 3.585 11.987 8.163l13.77 34.953c0.727 1.846 3.289 3.59 5.272 3.59h34.074c1.935 0 4.375-1.725 5.02-3.548l6.638-18.758c0.186-0.525 0.139-0.845 0.088-0.918-0.052-0.073-0.338-0.223-0.895-0.223h-46.994c-1.993 0-3.609-1.616-3.609-3.609s1.616-3.609 3.609-3.609h46.994c2.843 0 5.317 1.194 6.789 3.275 1.471 2.081 1.771 4.811 0.822 7.491l-6.638 18.758c-1.658 4.686-6.852 8.358-11.824 8.358z"/>
@@ -36,12 +40,12 @@ $action = action([CatalogSearchController::class, 'show']);
                         {{-- <CartItemsCount /> in /resources/js/components/CartItemsCount --}}
                     </span>
                 </div>
-            @endapp
 
-            <div id="show-phone-button-container" data-phone="{{ config('admin.phone') }}">
-                {{-- <ShowPhoneButton phone={phone} /> in /resources/js/components/ShowPhoneButton/ --}}
-                <button class="btn btn-warning" type="button" style="width: 170px; margin-right: 35px;">Show our phone</button>
-            </div>
+                <div id="show-phone-button-container" data-phone="{{ config('admin.phone') }}">
+                    {{-- <ShowPhoneButton phone={phone} /> in /resources/js/components/ShowPhoneButton/ --}}
+                    <button class="btn btn-warning" type="button" style="width: 170px; margin-right: 35px;">Show our phone</button>
+                </div>
+            @endapp
 
             <form class="d-flex" action="{{ $action }}" method="get">
                 <div id="catalog-search-container">

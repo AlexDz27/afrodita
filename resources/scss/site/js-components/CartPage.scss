@@ -1,0 +1,37 @@
+.contact-info-submit {
+  font-family: inherit;
+  border: 0;
+  cursor: pointer;
+  font-size: 34px;
+  //padding: 14px 25px;
+  //background-color: #5D7EEF;
+  color: #fff;
+  transition: background-color 0.3s;
+
+  padding: 14px 105px;
+  width: 100%;
+  background-color: rgb(33, 179, 2);
+
+  &:hover {
+    background-color: #71ff36;
+  }
+
+  &:active {
+    background-color: rgb(33, 179, 2);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: rgba(158, 158, 158, 0.86);
+    opacity: .5;
+  }
+}
+
+.cart-page__make-order-btn {
+  font-size: 54px;
+  pointer-events: all !important;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

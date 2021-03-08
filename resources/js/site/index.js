@@ -5,16 +5,18 @@ import { ShowPhoneButton } from './components/ShowPhoneButton/ShowPhoneButton';
 import { SearchCatalogInput } from './components/SearchCatalogInput/SearchCatalogInput';
 import CartItemsCount from './components/CartItemsCount';
 import AddToCartButton from './components/AddToCartButton';
-import Cart from './components/Cart';
+import CartPage from './components/CartPage';
 import { AddAttributesButton } from './components/AddAttributesButton/AddAttributesButton';
 import './modules/localStorageEvents';
 // TODO: split into "admin.js"
 import SpecificDatePicker from './components/SpecificDatePicker';
 
-// On all pages, in navbar. Renders "Show our number" button in navbar. On click, shows telephone number of the studio
-const showPhoneButtonContainer = document.getElementById('show-phone-button-container');
-const phone = showPhoneButtonContainer.dataset.phone;
-ReactDOM.render(<ShowPhoneButton phone={phone}/>, showPhoneButtonContainer);
+// On app pages, in navbar. Renders "Show our number" button in navbar. On click, shows telephone number of the studio
+if (document.getElementById('show-phone-button-container')) {
+  const showPhoneButtonContainer = document.getElementById('show-phone-button-container');
+  const phone = showPhoneButtonContainer.dataset.phone;
+  ReactDOM.render(<ShowPhoneButton phone={phone}/>, showPhoneButtonContainer);
+}
 
 // On all pages, in navbar. Renders search for catalog
 const searchContainer = document.getElementById('catalog-search-container');
@@ -30,9 +32,9 @@ if (document.getElementById('add-to-cart-btn-container')) {
   ReactDOM.render(<AddToCartButton/>, document.getElementById('add-to-cart-btn-container'));
 }
 
-// On cart page. Renders cart component
-if (document.getElementById('cart-container')) {
-  ReactDOM.render(<Cart/>, document.getElementById('cart-container'));
+// On cart page. Renders cart page
+if (document.getElementById('cart-page-container')) {
+  ReactDOM.render(<CartPage/>, document.getElementById('cart-page-container'));
 }
 
 // On admin page > Edit service/product. Renders add attributes button

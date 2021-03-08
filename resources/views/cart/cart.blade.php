@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-  <div id="cart-container" class="cart-container container">
-    {{-- <Cart /> in /resources/js/components/Cart --}}
+  <div id="cart-page-container">
+    {{-- <CartPage /> in /resources/js/components/CartPage --}}
   </div>
 @endsection

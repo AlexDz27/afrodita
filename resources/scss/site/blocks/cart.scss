@@ -25,6 +25,7 @@
 .cart__price {
   line-height: inherit;
   font-size: 20px;
+  min-width: 112px;
 }
 
 .cart__qty {
@@ -34,4 +35,9 @@
   width: 35px;
   text-align: center;
   border: none;
+  line-height: 38px;
+}
+
+.contact-info-container {
+  max-width: 600px;
 }

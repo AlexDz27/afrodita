@@ -45,4 +45,4 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
 });
 
 // Booking
-Route::get('/booking', [BookingController::class, 'index']);
+Route::get('/booking', [BookingController::class, 'index'])->name('booking');

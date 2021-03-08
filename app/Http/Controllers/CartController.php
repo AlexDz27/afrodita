@@ -12,4 +12,10 @@ class CartController extends Controller
       'breadCrumbTitle' => 'Cart',
     ]);
   }
+
+  public function submit()
+  {
+    dump('qwe');
+    die();
+  }
 }

@@ -1,21 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import CartItem from './CartItem';
 
-const Cart = () => {
-  const [items, setItems] = useState([]);
-
-  const [order, setOrder] = useState([]);
-
-  useEffect(() => {
-    // TODO: create a func for it, god dammit...
-    // reversing so that order becomes {id: 1, ...}, {id: 2, ...}, ...
-    const storageItems = JSON.parse(localStorage.getItem('cartItems')).reverse();
-    const initialOrder = storageItems.map(item => ({...item, qty: 1}));
-
-    setItems(storageItems);
-    setOrder(initialOrder);
-  }, []);
-
+const Cart = ({items, order, totalSum, setOrder, setItems}) => {
   const deleteAllItems = () => {
     const userSure = confirm('Are you sure you want to discard your current order?');
     if (!userSure) return;
@@ -25,30 +11,34 @@ const Cart = () => {
     window.location.href = '/';
   }
 
-  const makeOrder = () => {
-    const userConfirmed = confirm('Do you confirm this order?');
-    if (!userConfirmed) return;
+  const deleteItem = (id) => {
+    const updatedOrderItems = [...order.items];
+    const orderItemToDeleteIdx = updatedOrderItems.findIndex(item => item.id === id);
+    updatedOrderItems.splice(orderItemToDeleteIdx, 1);
+    setOrder({items: updatedOrderItems, contactInfo: order.contactInfo});
 
-    // read data -> send to server -> send user back to main
-
+    const updatedItems = [...items];
+    const itemToDeleteIdx = updatedItems.findIndex(item => item.id === id);
+    updatedItems.splice(itemToDeleteIdx, 1);
+    setItems(updatedItems);
   }
-  
+
   return (
-    <div className="cart">
-      <h1 className="d-flex justify-content-between">
-        <span>Cart</span>
+    <div className="cart-container container">
+      <div className="cart">
+        <h1 className="d-flex justify-content-between">
+          <span>Cart</span>
 
-        <button onClick={deleteAllItems} className="btn btn-danger">🗑️ Delete all items</button>
-      </h1>
+          <button onClick={deleteAllItems} className="btn btn-danger">🗑️ Delete all items</button>
+        </h1>
 
-      <ul className="cart__content list-group mb-5">
-        {items.map((item) => (
-          <CartItem key={item.id} item={item} order={order} setOrder={setOrder} />
-        ))}
-      </ul>
+        <ul className="cart__content list-group mb-5">
+          {items.map((item) => (
+            <CartItem key={item.id} item={item} order={order} setOrder={setOrder} deleteItem={deleteItem} />
+          ))}
+        </ul>
 
-      <div className="d-grid gap-2">
-        <button onClick={makeOrder} className="btn btn-success btn-lg mb-5">Make order</button>
+        <h1 className="mb-5">Total sum: {totalSum} BYN</h1>
       </div>
     </div>
   );
