@@ -42,6 +42,8 @@ Route::prefix('admin')->middleware('admin.auth')->group(function () {
     Route::post('/products/edit/{id}', [AdminController::class, 'editProduct']);
 
     Route::get('/bookings', [AdminController::class, 'bookings']);
+
+    Route::get('/orders', [AdminController::class, 'orders']);
 });
 
 // Booking

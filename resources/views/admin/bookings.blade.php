@@ -12,7 +12,7 @@
     <a class="btn {{ $chosenTime === 'today' ? 'btn-primary' : 'btn-outline-primary' }}" href="?time=today">Today</a>
     <a class="btn {{ $chosenTime === 'tomorrow' ? 'btn-primary' : 'btn-outline-primary' }}" href="?time=tomorrow">Tomorrow</a>
     <a class="btn {{ $chosenTime === 'day-after-tomorrow' ? 'btn-primary' : 'btn-outline-primary' }}" href="?time=day-after-tomorrow">Day after tomorrow</a>
-    <span id="specific-date-link-container">
+    <span id="specific-date-link-container" data-active="{{ $chosenTime === 'specific-date' ? 'true' : 'false' }}">
       <a class="btn {{ $chosenTime === 'specific-date' ? 'btn-primary' : 'btn-outline-primary' }}" href="?time=specific-date&date=">Specific date</a>
     </span>
     <a class="btn {{ ($chosenTime === 'all-time' || $chosenTime === null)  ? 'btn-primary' : 'btn-outline-primary' }}" href="?time=all-time">All time</a>
@@ -43,7 +43,6 @@
       </tr>
     @endforeach
     </tbody>
-
   </table>
 
   {{ $bookings->links() }}

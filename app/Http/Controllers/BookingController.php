@@ -30,7 +30,7 @@ class BookingController extends Controller
 
     return response()->json([
       'success' => $result,
-      'message' => $result ? 'Order submitted successfully' : 'Problem submitting reminder'
+      'message' => $result ? 'Order submitted successfully' : 'Problem submitting booking'
     ]);
   }
 }

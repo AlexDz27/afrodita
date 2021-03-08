@@ -42,7 +42,9 @@ if (document.getElementById('add-attributes-button-container')) {
   ReactDOM.render(<AddAttributesButton/>, document.getElementById('add-attributes-button-container'));
 }
 
-// On admin page, on Bookings page. Renders specific date button and picker
+// On admin page, on Bookings and Orders page. Renders specific date button and picker
 if (document.getElementById('specific-date-link-container')) {
-  ReactDOM.render(<SpecificDatePicker/>, document.getElementById('specific-date-link-container'));
+  const container = document.getElementById('specific-date-link-container');
+  const active = container.dataset.active;
+  ReactDOM.render(<SpecificDatePicker active={active} />, container);
 }

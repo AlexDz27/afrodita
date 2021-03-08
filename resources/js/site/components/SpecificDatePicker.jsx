@@ -6,7 +6,7 @@ import '../../../scss/booking/blocks/datepicker.scss';
 import { formatSelectedTime } from '../../utils/formatSelectedTime';
 import { isWeekday } from '../../booking/utils/isWeekday';
 
-const SpecificDatePicker = () => {
+const SpecificDatePicker = (props) => {
   const datePickerRef = useRef(null);
   const urlParams = new URLSearchParams(window.location.search);
   const selectedDate = urlParams.get('date') ? new Date(urlParams.get('date')) : new Date();
@@ -23,9 +23,10 @@ const SpecificDatePicker = () => {
     datePickerRef.current.setOpen(true);
   }
 
+  const active = props.active === 'true';
   return (
     <>
-      <button onClick={onBtnClick} className="btn btn-outline-primary">
+      <button onClick={onBtnClick} className={`btn ${active ? 'btn-primary' : 'btn-outline-primary'}`}>
         Specific date
       </button>
 

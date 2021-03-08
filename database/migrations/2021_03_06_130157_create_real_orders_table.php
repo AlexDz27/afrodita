@@ -15,7 +15,12 @@ class CreateRealOrdersTable extends Migration
   {
     Schema::create('orders', function (Blueprint $table) {
       $table->id();
-
+      $table->dateTime('time_added');
+      $table->json('items');
+      $table->decimal('total_sum', 19, 2);
+      $table->string('name');
+      $table->string('phone');
+      $table->string('email')->nullable();
       $table->timestamps();
     });
   }
