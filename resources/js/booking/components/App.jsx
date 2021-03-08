@@ -171,7 +171,7 @@ const App = () => {
 
     setLoadingOnSubmit(true);
 
-    const response = await fetch(window.apiUrl + '/api/booking-submit', {
+    const response = await fetch('/api/booking-submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
